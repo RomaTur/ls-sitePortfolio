@@ -30,7 +30,7 @@ npm i
  * `express, socket, passport, babel, parallax`
 
 ---
-
+<p align='center' bg-color='#bbb'>
 <img src="https://images.plot.ly/language-icons/api-home/js-logo.png" alt="JS" width='75px' height='75px'>
 <img src="https://www.audero.it/blog/wp-content/uploads/2015/06/sass-logo.png" alt="Sass" width='75px' height='75px'>
 <img src="https://avatars.githubusercontent.com/u/9338635?v=3&s=100" alt="Pug" width='75px' height='75px'>
@@ -39,7 +39,7 @@ npm i
 <img src="http://www.pvsm.ru/wp-content/plugins/contextual-related-posts/timthumb/timthumb.php?src=http%3A%2F%2Fwww.pvsm.ru%2Fimages%2F2017%2F01%2F09%2FWebpack-v-Visual-Studio-dlya-bolshih-solyushenov.png&w=100&h=100&zc=1&q=75" alt="Webpack" width='75px' height='75px'>
 <img src="https://www.clearvision-cm.com/wp-content/themes/clearvision_v3/img/menu/git.png" alt="Git" width='75px' height='75px'>
 <img src="https://www.dsp.co.uk/wp-content/uploads/2016/07/MongoDB-Support-1-100x100.png" alt="Mongo.db" width='75px' height='75px'>
-
+</p>
 
  ---
 
