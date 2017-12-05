@@ -1,13 +1,18 @@
+
 mixin svg(classIco, name)
     svg(class= classIco)
-        use(xlink:href='img/svg/symbols.svg#'+ name)
+        use(xlink:href=dirDepth+'img/svg/symbols.svg#'+ name)
 
-mixin listItem(text, className, href, name)
+mixin listItem(text, className, href, name, secClass)
     if(href)
         li(class= className+'__item')
+            if(secClass)
+                #{secClass}
             a(class= className+'__link' href= href)= text
                 if(name)
                     +svg(className+'__ico', name)
+            if(secClass)
+                #{secClass}
     else 
         li(class= className+'__item')= text
 //- mixin listItem(text, className)

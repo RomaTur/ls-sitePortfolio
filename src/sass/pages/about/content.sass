@@ -1,0 +1,31 @@
+.content
+    background: $color-white2
+    @extend %flex-center
+    &__left
+        @extend %flex-center
+        flex-direction: column
+        flex: 1
+    &__right
+        @extend %flex-center
+        flex-direction: column
+        flex: 1
+.page
+    &__title
+        position: relative
+        @extend %flex-center
+        &-text
+            font-family: 'bernier', sans-serif
+            font-weight: 300
+            font-size: 50px
+            color: $color-night
+            text-transform: uppercase
+        &-line
+            width: 22px
+            height: 5px
+            margin: 0 16px
+            background: fade-out($color-night, 0.5)
+        &-bg
+            @extend %absolute-center
+            fill: fade-out($color-night, 0.92)
+            width: 200px
+        

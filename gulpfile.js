@@ -34,7 +34,7 @@ const paths =  {
 ////////////////////////////////////
 gulp.task('sass-watch', function(){
 
-    return gulp.src(paths.src+'sass/main.sass')
+    return gulp.src(paths.src+'sass/*.sass')
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sassGlob())
@@ -122,7 +122,7 @@ gulp.task('sprites:build', function () {
 
 gulp.task('sass:build', function(){
 
-    return gulp.src(paths.src+'sass/main.sass')
+    return gulp.src(paths.src+'sass/*.sass')
         .pipe(plumber())
         .pipe(sassGlob())
         .pipe(sass())
@@ -142,7 +142,7 @@ gulp.task('scripts:build', function(){
 });
 
 gulp.task('html:build',function(){
-  return gulp.src(paths.src + 'pug/index.pug')
+  return gulp.src([paths.src + 'pug/index.pug', paths.src + 'pug/*/index.pug'])
     .pipe(plumber())
     .pipe(pug())
     .pipe(replace(/\n\s*<!--DEV[\s\S]+?-->/gm, ''))
