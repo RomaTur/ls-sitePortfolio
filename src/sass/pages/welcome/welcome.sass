@@ -1,0 +1,105 @@
+.welcome
+    @extend %bg-config
+    @include bg-img('../img/welcome/bg.jpg')
+    width: 100vw
+    height: 100vh
+    @extend %flex-center
+    &__intro
+        // width: 380px
+        display: flex
+        flex-direction: column
+        border-radius: 5px
+        padding-bottom: 10px
+        
+    &__login-button
+        position: absolute
+        right: 20px
+        top: 24px
+        font-family: 'roboto', sans-serif
+        font-weight: 500
+        padding: 10px 32px
+        font-size: 16px
+        color: $color-white
+        border: 1px solid $color-white
+        border-radius: 5px
+        transition: 0.2s
+        &:hover
+            color: $color-aqua
+            background: $color-white
+
+    &__footer
+        position: fixed
+        bottom: 0
+        width: 100%
+        text-align: center
+        padding-bottom: 27px
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 300
+        color: $color-white 
+
+.person
+    @extend %flex-center
+    flex-direction: column
+    padding-top: 40px 
+    background: fade-out($color-white, 0.1)
+    border-top-right-radius: 5px
+    border-top-left-radius: 5px
+    &__avatar
+        width: 140px
+        height: 140px
+        margin-bottom: 10px
+        // filter: blur(100%)
+    &__name
+        font-family: 'roboto', sans-serif
+        font-weight: 500
+        font-size: 28px
+        margin-bottom: 3px
+        color: $color-night
+    &__desc
+        font-family: 'roboto', sans-serif
+        font-weight: 400
+        font-size: 16px
+        margin-bottom: 30px
+        color: $color-night
+
+.social
+    // display: none
+    margin-bottom: 33px
+    @extend %flex-center
+    &__item
+        margin-right: 27px
+        &:last-child
+            margin-right: 0
+    &__ico
+        width: 27px
+        height: 25px
+        fill: $color-aqua
+        transition: 0.2s
+        &:hover
+            fill: $color-aqua2
+        
+
+.nav
+    &__pages
+        @extend %flex-center
+        font-family: 'roboto', sans-serif
+        font-weight: 500
+        font-size: 16px
+        width: 100%
+        
+    &__item
+        border-right: 2px solid lighten($color-aqua, 10%)
+        background: fade-out($color-aqua, 0.05)
+        transition: 0.2s
+        &:hover
+            background: fade-out($color-aqua, 0.2)
+        &:last-child
+            border-right: none
+            border-bottom-right-radius: 5px
+        &:first-child
+            border-bottom-left-radius: 5px
+    &__link
+        padding: 12px 31px
+        text-align: center
+        color: $color-white

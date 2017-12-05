@@ -1,0 +1,30 @@
+include ./config/mixins
+
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Personal Site
+        link(rel="stylesheet", href="css/main.css")
+    body
+        
+        .wrapper
+            .welcome
+                .welcome__intro 
+                    .person
+                        .person__avatar
+                            img(class='person__avatar-img' src='img/welcome/avatar.png')
+                        .person__name Роман Турусов
+                        .person__desc Личный сайт веб-разработчика
+                        ul.social
+                            +listItem('', 'social', 'https://vk.com/id_r0mashka','vk')
+                            +listItem('', 'social', 'https://github.com/RomaTur', 'github')
+                            +listItem('', 'social', 'https://twitter.com/RoMan_111', 'in')
+                    ul.nav__pages
+                       +listItem('Мои работы', 'nav', 'works')
+                       +listItem('Обо мне', 'nav', 'about')
+                       +listItem('Блог', 'nav', 'blog')
+                a.welcome__login-button(href='#') Аторизоваться
+                .welcome__footer © Роман Турусов | создано с любовью в LoftSchool | 2016
