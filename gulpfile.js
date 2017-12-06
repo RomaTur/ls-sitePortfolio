@@ -78,12 +78,6 @@ gulp.task('html-watch',function(){
 
 
 
-
-
-
-
-
-
 ////////////////////////////////////
 ////////////BUILD///////////////////
 ////////////////////////////////////
@@ -146,43 +140,12 @@ gulp.task('sass:build', function(){
 
 gulp.task('scripts:build', () => {
     // run webpack
-    // webpack(webpackConfig, onComplete);
-
     return gulp.src(paths.src + 'js/**/index.js')
         .pipe(webpack(webpackConfig))
         .pipe(gulp.dest(paths.build + 'js/'))
         .pipe(browserSync.reload({stream: true}));
-
-    // function onComplete(error, stats) {
-    //   if (error) { // кажется еще не сталкивался с этой ошибкой
-    //     onError(error);
-    //   } else if ( stats.hasErrors() ) { // ошибки в самой сборке, к примеру "не удалось найти модуль по заданному пути"
-    //     onError( stats.toString(statsLog) );
-    //   } else {
-    //     onSuccess( stats.toString(statsLog) );
-    //   }
-    // }
-    // function onError(error) {
-    //   let formatedError = new gutil.PluginError('webpack', error);
-    //   notifier.notify({ // чисто чтобы сразу узнать об ошибке
-    //     title: `Error: ${formatedError.plugin}`,
-    //     message: formatedError.message
-    //   });
-    //   done(formatedError);
-    // }
-    // function onSuccess(detailInfo) {
-    //   gutil.log('[webpack]', detailInfo);
-    //   done();
-    // }
   });
 
-// gulp.task('scripts:build', function(){
-//     return gulp.src(paths.src + 'js/**/*.js')
-//             .pipe(plumber())
-//             // .pipe(uglify())
-//             .pipe(concat('app.js'))
-//             .pipe(gulp.dest(paths.build + 'js/'))
-// });
 
 gulp.task('html:build',function(){
   return gulp.src([paths.src + 'pug/index.pug', paths.src + 'pug/*/index.pug'])
