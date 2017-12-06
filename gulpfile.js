@@ -19,8 +19,17 @@ const pug           = require('gulp-pug');
 const svgSprite     = require('gulp-svg-sprites');
 const svgmin        = require('gulp-svgmin');
 const cheerio       = require('gulp-cheerio');
-const $             = require('jquery');
+const webpack       = require('gulp-webpack');
+const gutil         = require('gulp-util');
+const notifier      = require('node-notifier');
 // const babel         = require('gulp-babel');
+
+
+let webpackConfig = require('./webpack.config.js');
+let statsLog      = { // для красивых логов в консоли
+  colors: true,
+  reasons: true
+};
 
 const paths =  {
   src: 'src/',              // paths.src
@@ -127,19 +136,53 @@ gulp.task('sass:build', function(){
         .pipe(sassGlob())
         .pipe(sass())
         .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
-        .pipe(groupMediaQueries())
+        // .pipe(groupMediaQueries())
         .pipe(cleanCSS())
         .pipe(gulp.dest(paths.build + 'css/'))
 
 });
 
-gulp.task('scripts:build', function(){
-    return gulp.src(paths.src + 'js/**/*.js')
-            .pipe(plumber())
-            // .pipe(uglify())
-            .pipe(concat('app.js'))
-            .pipe(gulp.dest(paths.build + 'js/'))
-});
+
+
+gulp.task('scripts:build', () => {
+    // run webpack
+    // webpack(webpackConfig, onComplete);
+
+    return gulp.src(paths.src + 'js/**/index.js')
+        .pipe(webpack(webpackConfig))
+        .pipe(gulp.dest(paths.build + 'js/'))
+        .pipe(browserSync.reload({stream: true}));
+
+    // function onComplete(error, stats) {
+    //   if (error) { // кажется еще не сталкивался с этой ошибкой
+    //     onError(error);
+    //   } else if ( stats.hasErrors() ) { // ошибки в самой сборке, к примеру "не удалось найти модуль по заданному пути"
+    //     onError( stats.toString(statsLog) );
+    //   } else {
+    //     onSuccess( stats.toString(statsLog) );
+    //   }
+    // }
+    // function onError(error) {
+    //   let formatedError = new gutil.PluginError('webpack', error);
+    //   notifier.notify({ // чисто чтобы сразу узнать об ошибке
+    //     title: `Error: ${formatedError.plugin}`,
+    //     message: formatedError.message
+    //   });
+    //   done(formatedError);
+    // }
+    // function onSuccess(detailInfo) {
+    //   gutil.log('[webpack]', detailInfo);
+    //   done();
+    // }
+  });
+
+// gulp.task('scripts:build', function(){
+//     return gulp.src(paths.src + 'js/**/*.js')
+//             .pipe(plumber())
+//             // .pipe(uglify())
+//             .pipe(concat('app.js'))
+//             .pipe(gulp.dest(paths.build + 'js/'))
+// });
 
 gulp.task('html:build',function(){
   return gulp.src([paths.src + 'pug/index.pug', paths.src + 'pug/*/index.pug'])
@@ -166,7 +209,7 @@ gulp.task('clean', function(){
 
 gulp.task('watch', function(){
     gulp.watch(paths.src + 'sass/**/*.sass', gulp.series('sass-watch'));
-    gulp.watch(paths.src + 'js/**/*.js', gulp.series('scripts-watch'));
+    gulp.watch(paths.src + 'js/**/*.js', gulp.series('scripts:build'));
     gulp.watch(paths.src + 'pug/**/*.pug', gulp.series('html-watch'));
     gulp.watch([paths.src + 'img/**/*.*', paths.src + 'fonts/**/*.*', paths.src + 'favicon.ico', paths.src + 'js/**/*.json', paths.src + 'php/**/*.*'], gulp.series('prebuild'));
 });
@@ -188,6 +231,6 @@ gulp.task('build', gulp.series(
 ////////////////////////////////////////////////////////////
 gulp.task('default', gulp.series(
   'clean',
-  gulp.parallel('sass-watch', 'scripts-watch', 'html-watch', 'prebuild'),
+  gulp.parallel('sass-watch', 'scripts:build', 'html-watch', 'prebuild'),
   gulp.parallel('watch', 'serve')
 ));
