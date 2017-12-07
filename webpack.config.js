@@ -4,8 +4,6 @@
 const path              = require('path');
 const UglifyJSPlugin    = require('uglifyjs-webpack-plugin');
 const isDev             = true;
-// const ProvidePlugin     = require('webpack/lib/ProvidePlugin');
-// const $                 = require('jquery');
 
 let paths = {
     src:{
@@ -23,28 +21,16 @@ let paths = {
         img: './build/img/',
         fonts: './build/fonts/',
         php: './build/php/'
-    },
-    dir:['','about/','blog/','admin/', 'works/']
+    }
 };
 
 module.exports = {
-    entry: {
-        // welcome: ['babel-polyfill', paths.src.js + 'index.js'],
-        // about: ['babel-polyfill', paths.src.js + 'about/index.js'],
-        // blog: ['babel-polyfill', paths.src.js + 'blog/index.js'],
-        // admin: ['babel-polyfill', paths.src.js + 'admin/index.js'],
-        // works: ['babel-polyfill', paths.src.js + 'works/index.js']
-        welcome: [paths.src.js + 'index.js'],
-        about: [paths.src.js + 'about/index.js'],
-        blog: [paths.src.js + 'blog/index.js'],
-        admin: [paths.src.js + 'admin/index.js'],
-        works: [paths.src.js + 'works/index.js']
-    },
+    // entry: ['babel-polyfill', paths.src.js + 'index.js'],
+    entry: paths.src.js + 'app.js',
     // devtool: isDev ? 'inline-source-map' : 'hidden-source-map',
     // devtool: isDev ? 'inline-source-map': '',
     output: {
-        path: path.resolve(__dirname, paths.build.js),
-        filename: '[name].js'
+        filename: 'bundle.js'
     },
     module: {
         loaders: [{

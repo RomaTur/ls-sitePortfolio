@@ -19,140 +19,129 @@ const pug           = require('gulp-pug');
 const svgSprite     = require('gulp-svg-sprites');
 const svgmin        = require('gulp-svgmin');
 const cheerio       = require('gulp-cheerio');
-const webpack       = require('gulp-webpack');
-const gutil         = require('gulp-util');
-const notifier      = require('node-notifier');
+const gulpWebpack   = require('gulp-webpack');
+const webpack       = require('webpack');
+// const gutil         = require('gulp-util');
+// const notifier      = require('node-notifier');
 // const babel         = require('gulp-babel');
 
 
 let webpackConfig = require('./webpack.config.js');
-let statsLog      = { // для красивых логов в консоли
-  colors: true,
-  reasons: true
-};
+// let statsLog      = { // для красивых логов в консоли
+//   colors: true,
+//   reasons: true
+// };
 
 const paths =  {
-  src: 'src/',              // paths.src
-  build: 'build/',           // paths.build
-  project: 'ls-sitePortfolio/' // paths.project - name of project
+    src:{
+        self: 'src',
+        sass:'./src/sass/',
+        pug: './src/pug/',
+        img: './src/img/',
+        js: './src/js/',
+        fonts: './src/fonts/',
+        php: './src/php/'
+    },
+    build:{
+        self: 'build',
+        css: './build/css/',
+        js: './build/js/',
+        html: './build/',
+        img: './build/img/',
+        fonts: './build/fonts/',
+        php: './build/php/'
+    },
+    all: '**/*.*',
+    project: 'ls-sitePortfolio/' // paths.project - name of project
 };
-
-
-////////////////////////////////////
-////////////WATCH///////////////////
-////////////////////////////////////
-gulp.task('sass-watch', function(){
-
-    return gulp.src(paths.src+'sass/*.sass')
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(sassGlob())
-        .pipe(sass())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(paths.build + 'css/'))
-        .pipe(browserSync.reload({stream: true}))
-
-});
-
-gulp.task('scripts-watch', function(){
-    return gulp.src(paths.src + 'js/**/*.js')
-            .pipe(plumber())
-            .pipe(concat('app.js'))
-            .pipe(gulp.dest(paths.build + 'js/'))
-            .pipe(browserSync.reload({stream: true}));
-});
-
-gulp.task('html-watch',function(){
-  return gulp.src(paths.src + 'pug/**/index.pug')
-    .pipe(plumber())
-    .pipe(pug({pretty:true}))
-    .pipe(replace(/\n\s*<!--DEV[\s\S]+?-->/gm, ''))
-    .pipe(gulp.dest(paths.build))
-    .pipe(browserSync.reload({stream: true}));
-});
-
-////////////////////////////////////
-////////////////////////////////////
-////////////////////////////////////
-////////////////////////////////////
-
 
 
 ////////////////////////////////////
 ////////////BUILD///////////////////
 ////////////////////////////////////
 
+////Обработка jpg,png,jpeg 
 gulp.task('img:build',function(){
-    return gulp.src([paths.src + 'img/**/*.{jpg,png,jpeg}'])
+    return gulp.src([paths.src.img + '**/*.{jpg,png,jpeg}'])
             .pipe(plumber())
-            .pipe(imagemin({
+            .pipe(imagemin({ // скудное сжатие
                 progressive: true,
                 interlaced: true
             }))
-            .pipe(gulp.dest(paths.build + 'img/'))
-            .pipe(browserSync.reload({stream: true}));
+            .pipe(gulp.dest(paths.build.img))
+            .pipe(browserSync.reload({stream: true})); //перезагрузка браузера
 });
 
+//Просто перетаскивание шрифтов( потом добавлю их обработку )
 gulp.task('fonts:build',function(){
-    return gulp.src(paths.src + 'fonts/**/*.*')
+    return gulp.src(paths.src.fonts + paths.all)
                 .pipe(plumber())
-                .pipe(gulp.dest(paths.build + 'fonts/'));
+                .pipe(gulp.dest(paths.build.fonts))
+                .pipe(browserSync.reload({stream: true}));
 });
 
+//Просто перетаскивание favicon
 gulp.task('favicon:build',function(){
     return gulp.src(paths.src + 'favicon.ico')
                 .pipe(plumber())
-                .pipe(gulp.dest(paths.build ));
+                .pipe(gulp.dest(paths.build.self))
+                .pipe(browserSync.reload({stream: true}));
 });
 
+//Пока что только перетаскивание php шрифтов
 gulp.task('php:build',function(){
-    return gulp.src(paths.src + 'php/**/*.php')
+    return gulp.src(paths.src.php + '**/*.php')
                 .pipe(plumber())
-                .pipe(gulp.dest(paths.build + 'php/'));
+                .pipe(gulp.dest(paths.build.php))
+                .pipe(browserSync.reload({stream: true}));
 });
 
+// Создание спрайта из иконок
 gulp.task('sprites:build', function () {
-    return gulp.src(paths.src+'img/**/*.svg')
+    return gulp.src(paths.src.img + 'icons/*.svg')
         .pipe(cheerio({
             run: function ($) {
-                $('[fill]').removeAttr('fill');
+                $('[fill]').removeAttr('fill');// удаляем инлайновое назначение цвета чтобы в css задать
             }
         }))
-        .pipe(svgSprite({mode: "symbols"}))
-        .pipe(gulp.dest(paths.build+'img/'));
+        .pipe(svgSprite({mode: "symbols"}))//к иконке теперь можно обращаться img/svg/symbols.svg#icon
+        .pipe(gulp.dest(paths.build.img))
+        .pipe(browserSync.reload({stream: true}));
 });
 
-
+// Компиляция препроцессора SASS
 gulp.task('sass:build', function(){
 
-    return gulp.src(paths.src+'sass/*.sass')
+    return gulp.src(paths.src.sass + '*.sass')
         .pipe(plumber())
         .pipe(sassGlob())
-        .pipe(sass())
+        .pipe(sass())// компиляция
         .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
-        // .pipe(groupMediaQueries())
-        .pipe(cleanCSS())
-        .pipe(gulp.dest(paths.build + 'css/'))
+        .pipe(groupMediaQueries())// группировка медиазапросов
+        .pipe(cleanCSS()) //минификация
+        .pipe(gulp.dest(paths.build.css))
+        .pipe(browserSync.reload({stream: true}));
 
 });
 
 
-
+// Webpack
 gulp.task('scripts:build', () => {
     // run webpack
-    return gulp.src(paths.src + 'js/**/index.js')
-        .pipe(webpack(webpackConfig))
-        .pipe(gulp.dest(paths.build + 'js/'))
+    return gulp.src(paths.src.js + 'app.js')
+        .pipe(gulpWebpack(webpackConfig, webpack))
+        .pipe(gulp.dest(paths.build.js))
         .pipe(browserSync.reload({stream: true}));
   });
 
-
+// Компиляция Pug
 gulp.task('html:build',function(){
-  return gulp.src([paths.src + 'pug/index.pug', paths.src + 'pug/*/index.pug'])
+  return gulp.src(paths.src.pug + 'pages/*.pug')
     .pipe(plumber())
-    .pipe(pug())
-    .pipe(replace(/\n\s*<!--DEV[\s\S]+?-->/gm, ''))
-    .pipe(gulp.dest(paths.build));
+    .pipe(pug())// 
+    .pipe(replace(/\n\s*<!--DEV[\s\S]+?-->/gm, '')) //удаление коммнтариев вида <!--DEV * -->
+    .pipe(gulp.dest(paths.build.self))
+    .pipe(browserSync.reload({stream: true}));
 });
 
 
@@ -161,39 +150,43 @@ gulp.task('html:build',function(){
 ////////////////////////////////////
 ////////////////////////////////////
 
+//сборка мелочей
 gulp.task('prebuild', gulp.series(
     gulp.parallel('img:build', 'fonts:build', 'favicon:build', 'php:build', 'sprites:build')
   ));
 
+// Удаление build
 gulp.task('clean', function(){
-    return del(paths.build)
+    return del(paths.build.self)
 });
 
-
+// Наблюдение за файлами
 gulp.task('watch', function(){
-    gulp.watch(paths.src + 'sass/**/*.sass', gulp.series('sass-watch'));
-    gulp.watch(paths.src + 'js/**/*.js', gulp.series('scripts:build'));
-    gulp.watch(paths.src + 'pug/**/*.pug', gulp.series('html-watch'));
-    gulp.watch([paths.src + 'img/**/*.*', paths.src + 'fonts/**/*.*', paths.src + 'favicon.ico', paths.src + 'js/**/*.json', paths.src + 'php/**/*.*'], gulp.series('prebuild'));
+    gulp.watch(paths.src.sass + paths.all, gulp.series('sass:build'));
+    gulp.watch(paths.src.js + paths.all, gulp.series('scripts:build'));
+    gulp.watch(paths.src.pug + paths.all, gulp.series('html:build'));
+    gulp.watch([paths.src.img + paths.all, paths.src.fonts + paths.all, paths.src + 'favicon.ico', paths.src.js + '**/*.json', paths.src.php + paths.all], gulp.series('prebuild'));
 });
 
+// Запуск сервера
 gulp.task('serve', function() {
     browserSync({
         notify:false,
         open:true,
         port:8889,
-        proxy: "http://localhost:8888/"+paths.project+paths.build
+        proxy: "http://localhost:8888/"+paths.project + paths.build.self
     });
-    // browserSync.watch(paths.build + '**/*.*', browserSync.reload({stream: true}));
 });
 ///////////////////////////////////////////////////////////
+// Просто сборка
 gulp.task('build', gulp.series(
   'clean',
   gulp.parallel('sass:build', 'scripts:build', 'html:build', 'prebuild')
 ));
 ////////////////////////////////////////////////////////////
+// Сборка и наблюдение и сервак
 gulp.task('default', gulp.series(
   'clean',
-  gulp.parallel('sass-watch', 'scripts:build', 'html-watch', 'prebuild'),
+  gulp.parallel('sass:build', 'scripts:build', 'html:build', 'prebuild'),
   gulp.parallel('watch', 'serve')
 ));

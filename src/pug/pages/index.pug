@@ -1,0 +1,26 @@
+extends ../template
+
+block variables
+    - var title = 'Роман Турусов'
+    - var page = 'index'
+
+block content
+    .wrapper
+        .welcome
+            .welcome__intro 
+                .person
+                    .person__avatar
+                        img(class='person__avatar-img' src='img/avatar.png')
+                    h1.person__name Роман Турусов
+                    h2.person__desc Личный сайт веб-разработчика
+                    ul.social
+                        +listItem('', 'social', 'https://vk.com/id_r0mashka','vk')
+                        +listItem('', 'social', 'https://github.com/RomaTur', 'github')
+                        +listItem('', 'social', 'https://twitter.com/RoMan_111', 'in')
+                ul.nav__pages
+                   +listItem('Мои работы', 'nav', 'works.html')
+                   +listItem('Обо мне', 'nav', 'about.html')
+                   +listItem('Блог', 'nav', 'blog.html')
+            a.welcome__login-button(href='#') Аторизоваться
+            .welcome__footer © Роман Турусов | создано с любовью в LoftSchool | 2016
+    
