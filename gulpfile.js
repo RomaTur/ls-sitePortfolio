@@ -61,7 +61,7 @@ const paths =  {
 ////////////////////////////////////
 
 ////Обработка jpg,png,jpeg 
-gulp.task('img:build',function(){
+function imgBuild(){
     return gulp.src([paths.src.img + '**/*.{jpg,png,jpeg}'])
             .pipe(plumber())
             .pipe(imagemin({ // скудное сжатие
@@ -70,47 +70,61 @@ gulp.task('img:build',function(){
             }))
             .pipe(gulp.dest(paths.build.img))
             .pipe(browserSync.reload({stream: true})); //перезагрузка браузера
-});
+};
+
+// gulp.task('img:build',function(){
+//     return gulp.src([paths.src.img + '**/*.{jpg,png,jpeg}'])
+//             .pipe(plumber())
+//             .pipe(imagemin({ // скудное сжатие
+//                 progressive: true,
+//                 interlaced: true
+//             }))
+//             .pipe(gulp.dest(paths.build.img))
+//             .pipe(browserSync.reload({stream: true})); //перезагрузка браузера
+// });
 
 //Просто перетаскивание шрифтов( потом добавлю их обработку )
-gulp.task('fonts:build',function(){
+function fontsBuild(){
     return gulp.src(paths.src.fonts + paths.all)
                 .pipe(plumber())
                 .pipe(gulp.dest(paths.build.fonts))
                 .pipe(browserSync.reload({stream: true}));
-});
+};
 
 //Просто перетаскивание favicon
-gulp.task('favicon:build',function(){
+function faviconBuild(){
     return gulp.src(paths.src + 'favicon.ico')
                 .pipe(plumber())
                 .pipe(gulp.dest(paths.build.self))
                 .pipe(browserSync.reload({stream: true}));
-});
+};
 
 //Пока что только перетаскивание php шрифтов
-gulp.task('php:build',function(){
+function phpBuild(){
     return gulp.src(paths.src.php + '**/*.php')
                 .pipe(plumber())
                 .pipe(gulp.dest(paths.build.php))
                 .pipe(browserSync.reload({stream: true}));
-});
+};
 
 // Создание спрайта из иконок
-gulp.task('sprites:build', function () {
+function spriteBuild() {
     return gulp.src(paths.src.img + 'icons/*.svg')
         .pipe(cheerio({
             run: function ($) {
                 $('[fill]').removeAttr('fill');// удаляем инлайновое назначение цвета чтобы в css задать
             }
         }))
-        .pipe(svgSprite({mode: "symbols"}))//к иконке теперь можно обращаться img/svg/symbols.svg#icon
+        .pipe(svgSprite({
+            mode: "symbols",
+            preview: false
+        }))//к иконке теперь можно обращаться img/svg/symbols.svg#icon
         .pipe(gulp.dest(paths.build.img))
         .pipe(browserSync.reload({stream: true}));
-});
+};
 
 // Компиляция препроцессора SASS
-gulp.task('sass:build', function(){
+function sassBuild(){
 
     return gulp.src(paths.src.sass + '*.sass')
         .pipe(plumber())
@@ -122,71 +136,80 @@ gulp.task('sass:build', function(){
         .pipe(gulp.dest(paths.build.css))
         .pipe(browserSync.reload({stream: true}));
 
-});
-
+};
 
 // Webpack
-gulp.task('scripts:build', () => {
+function scriptsBuild(){
     // run webpack
     return gulp.src(paths.src.js + 'app.js')
         .pipe(gulpWebpack(webpackConfig, webpack))
         .pipe(gulp.dest(paths.build.js))
         .pipe(browserSync.reload({stream: true}));
-  });
+  };
 
 // Компиляция Pug
-gulp.task('html:build',function(){
+function htmlBuild(){
   return gulp.src(paths.src.pug + 'pages/*.pug')
     .pipe(plumber())
     .pipe(pug())// 
     .pipe(replace(/\n\s*<!--DEV[\s\S]+?-->/gm, '')) //удаление коммнтариев вида <!--DEV * -->
     .pipe(gulp.dest(paths.build.self))
     .pipe(browserSync.reload({stream: true}));
-});
-
-
-////////////////////////////////////
-////////////////////////////////////
-////////////////////////////////////
-////////////////////////////////////
-
-//сборка мелочей
-gulp.task('prebuild', gulp.series(
-    gulp.parallel('img:build', 'fonts:build', 'favicon:build', 'php:build', 'sprites:build')
-  ));
-
+};
 // Удаление build
-gulp.task('clean', function(){
+function clean(){
     return del(paths.build.self)
-});
+};
+
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+////////////////////////////////////
+
+exports.imgBuild = imgBuild;
+exports.fontsBuild = fontsBuild;
+exports.faviconBuild = faviconBuild;
+exports.phpBuild = phpBuild;
+exports.sassBuild = sassBuild;
+exports.spriteBuild = spriteBuild;
+exports.scriptsBuild = scriptsBuild;
+exports.htmlBuild = htmlBuild;
+
+exports.clean = clean;
+
+gulp.task('preBuild', gulp.series(clean,
+    gulp.series(imgBuild, fontsBuild, faviconBuild, phpBuild, sassBuild, spriteBuild, scriptsBuild, htmlBuild))
+);
 
 // Наблюдение за файлами
-gulp.task('watch', function(){
-    gulp.watch(paths.src.sass + paths.all, gulp.series('sass:build'));
-    gulp.watch(paths.src.js + paths.all, gulp.series('scripts:build'));
-    gulp.watch(paths.src.pug + paths.all, gulp.series('html:build'));
-    gulp.watch([paths.src.img + paths.all, paths.src.fonts + paths.all, paths.src + 'favicon.ico', paths.src.js + '**/*.json', paths.src.php + paths.all], gulp.series('prebuild'));
-});
+function watch(){
+    gulp.watch(paths.src.sass + paths.all, gulp.series(sassBuild));
+    gulp.watch(paths.src.js + paths.all, gulp.series(scriptsBuild));
+    gulp.watch(paths.src.pug + paths.all, gulp.series(htmlBuild));
+    gulp.watch([paths.src.img + paths.all, paths.src.fonts + paths.all, paths.src + 'favicon.ico', paths.src.js + '**/*.json', paths.src.php + paths.all], gulp.series('preBuild'));
+};
 
 // Запуск сервера
-gulp.task('serve', function() {
+function serve(){
     browserSync({
         notify:false,
         open:true,
         port:8889,
         proxy: "http://localhost:8888/"+paths.project + paths.build.self
     });
-});
+};
 ///////////////////////////////////////////////////////////
 // Просто сборка
 gulp.task('build', gulp.series(
-  'clean',
-  gulp.parallel('sass:build', 'scripts:build', 'html:build', 'prebuild')
+  clean, 'preBuild'
 ));
+
+exports.watch = watch;
+exports.serve = serve;
+////////////////////////////////////////////////////////////
+
 ////////////////////////////////////////////////////////////
 // Сборка и наблюдение и сервак
 gulp.task('default', gulp.series(
-  'clean',
-  gulp.parallel('sass:build', 'scripts:build', 'html:build', 'prebuild'),
-  gulp.parallel('watch', 'serve')
+  'build', gulp.parallel(watch, serve)
 ));
