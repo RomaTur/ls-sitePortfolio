@@ -1,18 +1,26 @@
 .content
-    background: $color-white2
     @extend %flex-center
+    align-items: initial
     &__left
         @extend %flex-center
         flex-direction: column
+        justify-content: flex-start
         flex: 1
+        background: $color-white
+        padding: 0 40px 40px 80px
     &__right
+        background: $color-white2
         @extend %flex-center
+        justify-content: flex-start
         flex-direction: column
         flex: 1
+        padding: 0 40px 40px 40px
 .page
     &__title
         position: relative
         @extend %flex-center
+        // height: 150px
+        // margin-top: -50px
         &-text
             font-family: 'bernier', sans-serif
             font-weight: 300
@@ -27,5 +35,56 @@
         &-bg
             @extend %absolute-center
             fill: fade-out($color-night, 0.92)
-            width: 200px
-        
+            width: 400px
+
+.page__about
+    &-title
+        @extend %flex-center
+
+    &-desc
+        font-family: 'roboto'
+        font-size: 14px
+        font-weight: 400
+        color: $color-night
+
+.page__skills
+    &-title
+        @extend %flex-center
+
+    &-desc
+        margin-bottom: 50px
+        font-family: 'roboto'
+        font-size: 14px
+        font-weight: 400
+        color: $color-night
+
+.skills
+    &__row
+        display: flex
+        flex-wrap: wrap
+        margin-bottom: 35px
+
+    &__title
+        color: $color-night
+        font-family: 'roboto'
+        font-size: 26px
+        font-weight: 500
+        width: 100%
+        margin-bottom: 15px      
+
+
+
+.skill
+    border: 20px solid $color-aqua
+    border-radius: 50%
+    width: 100px
+    height: 100px
+    @extend %flex-center
+    color: $color-aqua
+    font-family: 'roboto'
+    font-size: 16px
+    font-weight: 400
+    text-transform: uppercase
+    margin-right: 30px
+    &:last-child
+        margin-right: 0

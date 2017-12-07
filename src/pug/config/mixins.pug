@@ -21,13 +21,22 @@ mixin headerSame()
         - for(var i=0; i<3; i++){
             +listItem('','hamburger')
         - }
-    ul.menu
-        +listItem('Мои работы', 'menu', 'works.html', '', secClass)
-        +listItem('Блог', 'menu', 'blog.html', '', secClass)
-        +listItem('Обо мне', 'menu', 'about.html', '', secClass)
-        +listItem('Авторизация', 'menu', '../', '', secClass)
+    ul.menu-close__list
+        - for(var i=0; i<2; i++){
+            +listItem('','menu-close', '#')
+        - }
+    .menu
+        ul.menu__list
+            +listItem('Мои работы', 'menu', 'works.html', '', secClass)
+            +listItem('Блог', 'menu', 'blog.html', '', secClass)
+            +listItem('Обо мне', 'menu', 'about.html', '', secClass)
+            +listItem('Авторизация', 'menu', '../', '', secClass)
     ul.social
         +listItem('', 'social', 'https://vk.com/id_r0mashka','vk')
         +listItem('', 'social', 'https://github.com/RomaTur', 'github')
         +listItem('', 'social', 'https://twitter.com/RoMan_111', 'in')
-    
+    .header__triangle-left
+    .header__triangle-right
+    a.header__arrow-link(href='#')
+        +svg('header__arrow-img', 'arrow_down')
+ 

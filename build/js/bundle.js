@@ -60,28 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _jquery = __webpack_require__(1);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-console.log('Hi');
-console.log((0, _jquery2.default)('.wrapper'));
-(0, _jquery2.default)(function () {});
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10339,6 +10322,112 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _fullmenu = __webpack_require__(2);
+
+var _fullmenu2 = _interopRequireDefault(_fullmenu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import mapsInit from './modules/maps';
+// import './modules/maps';
+
+(0, _jquery2.default)(function () {
+    ///////
+    console.log('entry start');
+
+    (0, _fullmenu2.default)('.hamburger__list', '.menu-close__list', '.menu');
+    // mapsInit();
+
+    ///////
+    console.log('entry done');
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _isScroll = __webpack_require__(3);
+
+var _isScroll2 = _interopRequireDefault(_isScroll);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = function fullMenu(openClass, closeClass, viewClass) {
+    /////
+    console.log('fullMenu start');
+    //////
+    var open = (0, _jquery2.default)(openClass);
+    var close = (0, _jquery2.default)(closeClass);
+    var view = (0, _jquery2.default)(viewClass);
+
+    open.on('click', function (event) {
+        console.log('click');
+        view.fadeIn(400);
+        close.fadeIn(400);
+        open.fadeOut(400);
+        (0, _isScroll2.default)(false);
+    });
+    close.on('click', function (event) {
+        console.log('click');
+        view.fadeOut(400);
+        close.fadeOut(400);
+        open.fadeIn(400);
+        (0, _isScroll2.default)(true);
+    });
+
+    ///////
+    console.log('fullMenu done');
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//функция разрешения/запрета скролла//
+var prevDef = function prevDef(event) {
+    event.preventDefault();
+};
+module.exports = function (bool) {
+    console.log('in isScroll.js');
+    document.onmousewheel = document.onwheel = function () {
+        return !bool ? false : true;
+    };
+    if (bool == false) {
+        document.addEventListener('touchmove', prevDef, false);
+    } else {
+        document.removeEventListener('touchmove', prevDef, false);
+    }
+    document.addEventListener("MozMousePixelScroll", function () {
+        return !bool ? false : true;
+    }, false);
+    document.onkeydown = function (e) {
+        if (e.keyCode >= 33 && e.keyCode <= 40) {
+            return !bool ? false : true;
+        }
+    };
+};
 
 /***/ })
 /******/ ]);

@@ -17,15 +17,8 @@
     &__triangles
         position: absolute
         left: 0
-        bottom: -340px
+        bottom: 0
         width: 100%
-        display: flex
-        &-pic
-            display: none
-            width: 50%
-            fill: $color-white2
-            transform: scale(5)
-            
 
 .person
     @extend %flex-center
@@ -51,22 +44,6 @@
         margin-bottom: 30px
         color: $color-white
 
-
-
-.social
-    position: absolute
-    top: 35px
-    left: 30px
-    @extend %flex-center
-    &__item
-        margin-right: 25px
-        &:last-child
-            margin-right: 0
-    &__ico
-        width: 27px
-        height: 25px
-        fill: fade-out($color-white, 0.3)
-        transition: 0.2s
-        &:hover
-            fill: $color-white
+.header__triangle-right
+    border-color: transparent transparent $color-white2 transparent;
 

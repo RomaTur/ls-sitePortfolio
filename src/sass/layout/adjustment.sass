@@ -34,17 +34,45 @@ body
         border-radius: 2px
         margin: 8px 0
 
+.menu-close
+    &__list
+        display: none
+        position: absolute
+        top: 45px
+        right: 30px
+        cursor: pointer
+        z-index: 120
+        width: 40px
+        height: 40px
+    &__item
+        position: relative
+        &:first-child
+            .menu-close__link
+                transform: rotate(-45deg)
+        &:last-child
+            .menu-close__link
+                transform: rotate(45deg)
+    &__link
+        position: absolute
+        top: 0
+        left: 0
+        width: 40px
+        height: 5px
+        background: $color-white
+        border-radius: 2px
+
 .menu
+    @extend %absolute-center
     display: none
-    position: fixed
-    top: 0
-    left: 0
     width: 100%
     height: 100%
-    background: fade-out($color-aqua, 0.1)
     z-index: 100
-    @extend %flex-center
-    flex-direction: column
+    background: fade-out($color-aqua, 0.1)
+    &__list
+        @extend %flex-center
+        flex-direction: column
+        width: 100%
+        height: 100%
     &__item
         margin-bottom: 40px
         @extend %flex-center
@@ -67,6 +95,7 @@ body
     top: 35px
     left: 30px
     @extend %flex-center
+    z-index: 120
     &__item
         margin-right: 25px
         &:last-child
@@ -79,3 +108,34 @@ body
         &:hover
             fill: $color-white
 
+.header__triangle
+    &-right
+        position: absolute
+        bottom: 0
+        right: 0
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 0 20vh 50vw;
+        border-color: transparent transparent $color-white transparent;
+    &-left
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 50vw 20vh 0;
+        border-color: transparent transparent $color-white transparent;
+
+.header__arrow
+    &-img
+        @extend %absolute-center
+        top: initial
+        bottom: 75px
+        z-index: 2
+        width: 26px
+        height: 16px
+        fill: fade-out($color-white, 0.3)
+    &-link
+        
