@@ -5,7 +5,7 @@
         @extend %flex-center
         flex-direction: column
         justify-content: flex-start
-        flex: 1
+        width: 50%
         background: $color-white
         padding: 0 40px 40px 80px
     &__right
@@ -13,7 +13,7 @@
         @extend %flex-center
         justify-content: flex-start
         flex-direction: column
-        flex: 1
+        width: 50%
         padding: 0 40px 40px 40px
 .page
     &__title
@@ -34,6 +34,7 @@
             background: fade-out($color-night, 0.5)
         &-bg
             @extend %absolute-center
+            top: 40%
             fill: fade-out($color-night, 0.92)
             width: 400px
 

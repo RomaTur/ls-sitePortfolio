@@ -1,0 +1,11 @@
+.footer
+    @extend %flex-center
+    flex-direction: column
+    @extend %bg-config
+    @include bg-img('../img/works-footer-bg.jpg')
+    &__arrow
+        margin: 75px 0
+        width: 30px
+        height: 30px
+        fill: fade-out($color-white, 0.4)
+        transform: rotate(180deg)

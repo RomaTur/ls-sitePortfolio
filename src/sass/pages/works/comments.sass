@@ -1,0 +1,69 @@
+.comments
+    @extend %flex-center
+    flex-direction: column
+    width: 100%
+    margin-bottom: 65px
+    &__title
+        @extend %flex-center
+        align-items: flex-start
+        position: relative
+        width: 100%
+        padding: 50px 0
+        &-text
+            font-family: 'bernier', sans-serif
+            font-weight: 300
+            font-size: 50px
+            color: $color-night
+            width: 11ch
+            text-align: center
+        &-line
+            width: 22px
+            height: 5px
+            margin: 30px 16px
+            background: fade-out($color-night, 0.8)
+        &-bg
+            @extend %absolute-center
+            top: 40%
+            fill: fade-out($color-night, 0.92)
+            width: 500px
+
+    &__views
+        @extend %flex-center
+        align-items: initial
+
+
+.comment
+    width: 370px
+    display: flex
+    flex-direction: column
+    margin: 0 30px
+    &__text
+        flex: 1
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 400
+        margin-bottom: 25px
+    &__ico
+        width: 50px
+        height: 50px
+        fill: fade-out($color-night, 0.8)
+        margin-bottom: 30px
+    &__person
+        display: flex
+        align-items: center
+        &-avatar
+            background: $color-white
+            width: 80px
+            height: 80px
+            border-radius: 50%
+        &-desc
+            margin-left: 23px
+            display: flex
+            flex-direction: column
+            font-family: 'roboto', sans-serif
+            color: $color-aqua
+            font-size: 16px
+        &-name
+            font-weight: 500
+        &-prof
+            font-weight: 400

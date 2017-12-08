@@ -10334,21 +10334,23 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _fullmenu = __webpack_require__(2);
+var _fullMenu = __webpack_require__(2);
 
-var _fullmenu2 = _interopRequireDefault(_fullmenu);
+var _fullMenu2 = _interopRequireDefault(_fullMenu);
+
+var _maps = __webpack_require__(4);
+
+var _maps2 = _interopRequireDefault(_maps);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// import mapsInit from './modules/maps';
-// import './modules/maps';
 
 (0, _jquery2.default)(function () {
     ///////
     console.log('entry start');
 
-    (0, _fullmenu2.default)('.hamburger__list', '.menu-close__list', '.menu');
-    // mapsInit();
+    (0, _fullMenu2.default)('.hamburger__list', '.menu-close__list', '.menu');
+
+    (0, _maps2.default)();
 
     ///////
     console.log('entry done');
@@ -10361,6 +10363,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = fullMenu;
+
 var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
@@ -10371,7 +10378,7 @@ var _isScroll2 = _interopRequireDefault(_isScroll);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-module.exports = function fullMenu(openClass, closeClass, viewClass) {
+function fullMenu(openClass, closeClass, viewClass) {
     /////
     console.log('fullMenu start');
     //////
@@ -10428,6 +10435,120 @@ module.exports = function (bool) {
         }
     };
 };
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  ////////////
+  console.log('mapsInit start');
+  ///////////
+  _ymaps2.default.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU').then(function (maps) {
+
+    var map = new maps.Map('map', {
+      center: [54.922788, 43.294844],
+      controls: [''],
+      zoom: 13
+    });
+    map.behaviors.disable('scrollZoom');
+  }).catch(function (error) {
+    return console.log('Failed to load Yandex Maps', error);
+  });
+
+  ////////////
+  console.log('mapsInit done');
+  ///////////
+};
+
+var _ymaps = __webpack_require__(5);
+
+var _ymaps2 = _interopRequireDefault(_ymaps);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function getNsParamValue(url) {
+  var results = RegExp('[\\?&]ns=([^&#]*)').exec(url);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+exports.default = {
+  load: function load(src) {
+    src = src || 'https://api-maps.yandex.ru/2.1/?lang=en_RU';
+    this.promise = this.promise || new Promise(function (resolve, reject) {
+      var elem = document.createElement('script');
+      elem.type = 'text/javascript';
+      elem.src = src;
+      elem.onload = resolve;
+      elem.onerror = function (e) {
+        return reject(e);
+      };
+      document.body.appendChild(elem);
+    }).then(function () {
+      var ns = getNsParamValue(src);
+      if (ns && ns !== 'ymaps') {
+        (1, eval)('var ymaps = ' + ns + ';');
+      }
+      return new Promise(function (resolve) {
+        if (!global.ymaps) {
+          throw new Error('Failed to find ymaps in the global scope');
+        }
+        if (!global.ymaps.ready) {
+          throw new Error('ymaps.ready is missing');
+        }
+        return ymaps.ready(resolve);
+      });
+    });
+    return this.promise;
+  }
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ })
 /******/ ]);

@@ -1,0 +1,121 @@
+.content
+    background: $color-white
+    &__title
+        width: 100%
+        @extend %flex-center
+        padding: 50px 0
+        position: relative
+        &-text
+            font-family: 'bernier', sans-serif
+            font-weight: 300
+            font-size: 50px
+            color: $color-night
+            // text-transform: uppercase
+        &-line
+            width: 22px
+            height: 5px
+            margin: 15px 16px
+            background: fade-out($color-night, 0.8)
+        &-bg
+            @extend %absolute-center
+            top: 40%
+            fill: fade-out($color-night, 0.92)
+            width: 500px
+    &__works
+        display: flex
+        &-left
+            width: 50%
+            @extend %flex-center
+            flex-direction: column
+            background: lighten($color-white2, 2%)
+        &-right
+            width: 50%
+            @extend %flex-center
+            flex-direction: column
+            background: $color-white2
+        
+
+
+.school
+    &__title
+        @extend %flex-center
+        align-items: flex-start
+        margin-bottom: 35px
+        &-text
+            font-family: 'bernier', sans-serif
+            font-weight: 300
+            font-size: 34px
+            color: $color-night
+            // text-transform: uppercase
+            text-align: center
+            width: 18ch
+        &-line
+            width: 22px
+            height: 5px
+            margin: 17px 16px
+            background: fade-out($color-night, 0.8)
+    &__tech
+        padding: 15px 110px
+        font-family: 'roboto'
+        font-size: 16px
+        font-weight: 500
+        color: $color-aqua
+        border-top: 1px solid $color-aqua
+        border-bottom: 1px solid $color-aqua
+        margin-bottom: 40px
+    &__link
+        font-size: 16px
+        font-family: 'roboto', sans-serif
+        font-weight: 500
+        color: $color-white
+        padding: 12px 16px
+        background: $color-aqua
+        border-radius: 10px
+        @extend %flex-center
+        &-ico
+            fill: $color-white
+            width: 16px
+            height: 16px
+            margin-right: 10px
+
+
+.work
+    &__current
+        width: 100%
+        padding: 100px 0
+        &-img
+            height: 300px
+    &__another
+        @extend %flex-center
+        width: 100%
+    &__current
+        // height: 300px
+        width: 100%
+        text-align: center
+    &__view
+        // height: 200px
+        width: 50%
+        padding: 25px 0
+        position: relative
+        text-align: center
+        &-img
+            height: 180px
+        &-overlay
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            background: fade-out(darken($color-white2, 20%), 0.4)
+            @extend %flex-center
+    &__slide
+        &-up
+            width: 45px
+            height: 45px
+            fill: fade-out($color-white, 0.1)
+        &-down
+            width: 45px
+            height: 45px
+            transform: rotate(180deg)
+            fill: fade-out($color-white, 0.1)
+    

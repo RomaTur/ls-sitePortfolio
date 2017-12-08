@@ -1,5 +1,15 @@
 .footer
     #map
+    include ../../config/footer
 
-
-    //- script(src="https://api-maps.yandex.ru/2.1/?lang=ru_RU")
+    .contact
+        .contact__title
+            .contact__title-line
+            .contact__title-text Контакты
+            .contact__title-line
+        ul.contact__list
+            +contactItem('skype_kdn', 'contact', '#', 'skype')
+            +contactItem('mr.romatur@gmail.com', 'contact', 'mailto:mr.romatur@gmail.com', 'envelope')
+            +contactItem('8(915)-220-81-97', 'contact', 'tel:89152208197', 'phone')
+            +contactItem('г.Саров, ул.Раменская д.13/3', 'contact', '', 'map_marker')
+    

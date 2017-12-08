@@ -1,0 +1,77 @@
+.form
+    @extend %flex-center
+    flex-direction: column
+    // margin-bottom: 150px
+    border-radius: 5px
+    &__container
+        padding: 0 20px 20px 20px
+        background: fade-out($color-white, 0.5)
+        // filter: blur(3px)
+        @extend %flex-center
+        flex-direction: column
+        
+    &__title
+        @extend %flex-center
+        align-items: flex-start
+        position: relative
+        width: 100%
+        padding: 40px 0
+        &-text
+            font-family: 'bernier', sans-serif
+            font-weight: 300
+            font-size: 32px
+            color: $color-night
+            // width: 11ch
+            text-align: center
+        &-line
+            width: 22px
+            height: 5px
+            margin: 17px 16px
+            background: fade-out($color-night, 0.5)
+    &__inputs
+        @extend %flex-center
+        flex-direction: column
+        width: 100%
+    &__input
+        color: $color-night
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 500
+        width: 100%
+        border: none
+        border-radius: 5px
+        padding: 16px 20px
+        margin-bottom: 20px
+        font-size: 14px
+        &:last-child
+            margin-bottom: 0
+    &__message
+        resize: none
+        height: 140px
+
+    &__buttons
+        width: 100%
+        @extend %flex-center
+        align-items: initial
+    &__submit    
+        flex: 1
+        padding: 10px 0
+        text-align: center
+        border-bottom-left-radius: 5px
+        background: $color-aqua
+        border: none
+        border-right: 2px solid lighten($color-aqua, 10%)
+        color: $color-white
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 500
+    &__clean
+        flex: 1
+        padding: 10px 0
+        text-align: center
+        border-bottom-right-radius: 5px
+        background: $color-aqua2
+        color: $color-white
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 500

@@ -69,6 +69,8 @@
   },
   "homepage": "https://github.com/RomaTur/ls-sitePortfolio#readme",
   "dependencies": {
-    "gulp": "github:gulpjs/gulp#4.0"
+    "gulp": "github:gulpjs/gulp#4.0",
+    "progress": "^2.0.0",
+    "ymaps": "^0.1.1"
   }
 }

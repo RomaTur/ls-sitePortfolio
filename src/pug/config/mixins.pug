@@ -30,7 +30,7 @@ mixin headerSame()
             +listItem('Мои работы', 'menu', 'works.html', '', secClass)
             +listItem('Блог', 'menu', 'blog.html', '', secClass)
             +listItem('Обо мне', 'menu', 'about.html', '', secClass)
-            +listItem('Авторизация', 'menu', '../', '', secClass)
+            +listItem('Авторизация', 'menu', 'index.html', '', secClass)
     ul.social
         +listItem('', 'social', 'https://vk.com/id_r0mashka','vk')
         +listItem('', 'social', 'https://github.com/RomaTur', 'github')
@@ -40,3 +40,18 @@ mixin headerSame()
     a.header__arrow-link(href='#')
         +svg('header__arrow-img', 'arrow_down')
  
+mixin commentPerson(img, name, prof)
+    .comment__person
+        .comment__person-avatar
+            img(class="comment__person-img" src= img, alt= name)
+        .comment__person-desc
+            .comment__person-name= name
+            .comment__person-prof= prof
+
+mixin contactItem(text, className, href, ico)
+    li(class= className+'__item')
+        +svg(className+'__ico', ico)
+        if(href)
+            a(class= className+'__link' href= href)= text
+        else
+            span(class= className+'__text')= text 
