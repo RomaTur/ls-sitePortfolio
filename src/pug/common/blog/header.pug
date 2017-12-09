@@ -1,17 +1,14 @@
 
 .container.header
-    .header__bg
-        +svg('header__bg-text', 'portfolio_header')
     .person
         .person__avatar
             img(class='person__avatar-img' src='img/avatar.png')
-        h1.person__name Роман Турусов
-        h2.person__desc Личный сайт веб-разработчика
-    
-    ul.social
-        +listItem('', 'social', 'https://vk.com/id_r0mashka','vk')
-        +listItem('', 'social', 'https://github.com/RomaTur', 'github')
-        +listItem('', 'social', 'https://twitter.com/RoMan_111', 'in')
+        .page__title
+            +svg('page__bg-text', 'blog_header')
+            .page__title-line
+            h1.page__title-text Блог
+            .page__title-line
+        h2.page__desc Статьи, которые не я писал
     
     +headerSame()
 

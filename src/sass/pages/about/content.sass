@@ -14,19 +14,17 @@
         justify-content: flex-start
         flex-direction: column
         width: 50%
-        padding: 0 40px 40px 40px
+        padding: 0 10px 40px 40px
 .page
     &__title
         position: relative
         @extend %flex-center
-        // height: 150px
-        // margin-top: -50px
+        margin-bottom: 40px
         &-text
             font-family: 'bernier', sans-serif
             font-weight: 300
             font-size: 50px
             color: $color-night
-            text-transform: uppercase
         &-line
             width: 22px
             height: 5px
@@ -37,25 +35,37 @@
             top: 40%
             fill: fade-out($color-night, 0.92)
             width: 400px
+    &__avatar
+        margin-bottom: 30px
+        width: 440px
 
 .page__about
     &-title
         @extend %flex-center
-
+        .page__title-text
+            font-size: 40px
     &-desc
         font-family: 'roboto'
-        font-size: 14px
+        font-size: 17px
         font-weight: 400
         color: $color-night
 
 .page__skills
     &-title
         @extend %flex-center
+        align-items: flex-start
+        margin-bottom: 37px
+        .page__title-text
+            font-size: 30px
+            width: 17ch
+            text-align: center
+        .page__title-line
+            margin-top: 17px 
 
     &-desc
         margin-bottom: 50px
         font-family: 'roboto'
-        font-size: 14px
+        font-size: 16px
         font-weight: 400
         color: $color-night
 
@@ -63,7 +73,7 @@
     &__row
         display: flex
         flex-wrap: wrap
-        margin-bottom: 35px
+        margin-bottom: 15px
 
     &__title
         color: $color-night
@@ -76,16 +86,19 @@
 
 
 .skill
-    border: 20px solid $color-aqua
+    border: 17px solid $color-aqua
     border-radius: 50%
-    width: 100px
-    height: 100px
+    width: 110px
+    height: 110px
+    padding: 0 20px
     @extend %flex-center
     color: $color-aqua
     font-family: 'roboto'
-    font-size: 16px
-    font-weight: 400
-    text-transform: uppercase
+    font-size: 13px
+    font-weight: 500
     margin-right: 30px
+    margin-bottom: 20px
+    text-align: center
+    line-height: 1
     &:last-child
         margin-right: 0

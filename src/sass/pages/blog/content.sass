@@ -1,0 +1,59 @@
+.content
+    padding-top: 60px
+    background: $color-white
+    @extend %flex-center
+    align-items: initial
+
+
+.article
+    &__list
+        margin-right: 95px
+        width: 270px
+        // flex: 1 1 auto
+    &__item
+        color: $color-night
+        &--active
+            border-right: 2px solid $color-aqua
+            color: $color-aqua
+    &__link
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 400
+        padding: 14px 20px
+        text-align: right
+.articles
+    width: 680px
+.article
+    @extend %flex-center
+    align-items: flex-start
+    flex-direction: column
+    padding-bottom: 70px
+    margin-bottom: 60px
+    border-bottom: 5px solid fade-out($color-grey, 0.9)
+    &:last-child
+        border: none
+        padding-bottom: 0
+    &__title
+        font-family: 'bernier', sans-serif
+        font-size: 30px
+        font-weight: 300
+        color: $color-night
+        margin-bottom: 25px
+        width: 540px
+    &__date
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 300
+        color: $color-aqua
+        margin-bottom: 20px
+    &__text
+        &-paragraph
+            font-family: 'roboto', sans-serif
+            font-size: 16px
+            font-weight: 400
+            color: $color-night
+            margin-bottom: 20px
+            &:last-child
+                margin-bottom: 0
+        &-code
+            width: 100%
