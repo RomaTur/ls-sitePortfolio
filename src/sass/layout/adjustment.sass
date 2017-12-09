@@ -21,6 +21,7 @@ body
     height: 100%
 
 
+
 .hamburger
     &__list
         position: absolute
@@ -80,17 +81,20 @@ body
         @extend %flex-center
         &:last-child
             margin-bottom: 0
+        &:hover
+            .menu__line
+                width: 22px
     &__link
         font-family: 'bernier'
         font-size: 70px
         font-weight: 300
         color: $color-white
-        // text-transform: uppercase
     &__line
-        width: 22px
+        width: 0
+        transition: 0.2s
         height: 5px
         margin: 0 16px
-        background: fade-out($color-white, 0.5)
+        background: $color-white
 
 .social
     position: absolute
@@ -139,11 +143,14 @@ body
         width: 26px
         height: 16px
         fill: fade-out($color-white, 0.3)
+        transition: 0.2s
+        &:hover
+            fill: fade-out($color-white, 0.1)
     &-link
         
 .info
     width: 100%
-    background: fade-out($color-grey, 0.4)
+    background: fade-out($color-grey, 0.2)
     &__links
         border-bottom: 1px solid fade-out($color-white, 0.9)
         @extend %flex-center
@@ -155,8 +162,12 @@ body
         font-size: 16px
         font-weight: 500
         color: $color-white
+        
         &__item
             margin-right: 40px
+            transition: 0.2s
+            &:hover
+                color: $color-aqua
             &:last-child
                 margin-right: 0
     &-social
@@ -168,7 +179,10 @@ body
         &__ico
             width: 30px
             height: 30px
-            fill: $color-white
+            fill: fade-out($color-white, 0.1)
+            transition: 0.2s
+            &:hover
+                fill: $color-aqua
     &__desc
         @extend %flex-center
         justify-content: space-between

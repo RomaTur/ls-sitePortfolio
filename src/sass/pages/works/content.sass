@@ -72,6 +72,9 @@
         background: $color-aqua
         border-radius: 10px
         @extend %flex-center
+        transition: 0.2s
+        &:hover
+            background: $color-aqua2
         &-ico
             fill: $color-white
             width: 16px
@@ -108,6 +111,7 @@
             height: 100%
             background: fade-out(darken($color-white2, 20%), 0.4)
             @extend %flex-center
+            
     &__slide
         &-up
             width: 45px

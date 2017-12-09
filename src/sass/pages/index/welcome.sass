@@ -10,6 +10,8 @@
         flex-direction: column
         border-radius: 5px
         padding-bottom: 10px
+        // opacity: 0
+        display: none
         
     &__login-button
         position: absolute
@@ -88,6 +90,7 @@
         border-right: 2px solid lighten($color-aqua, 10%)
         background: fade-out($color-aqua, 0.05)
         transition: 0.2s
+        cursor: pointer
         &:hover
             background: fade-out($color-aqua, 0.2)
         &:last-child
@@ -99,3 +102,156 @@
         padding: 12px 0
         text-align: center
         color: $color-white
+
+
+
+.login
+    @extend .welcome__intro
+    // display: flex
+
+    &__container
+        @extend .person
+        padding: 10px 20px
+    &__title
+        margin: 20px 40px
+        @extend %flex-center
+        &-text
+            font-family: 'bernier', sans-serif
+            font-size: 35px
+            font-weight: 300
+            color: $color-night
+        &-line
+            width: 22px
+            height: 5px
+            margin: 0 16px
+            background: fade-out($color-night, 0.7)
+    &__inputs
+        width: 100%
+    &__inputs-row
+        margin-bottom: 20px
+        @extend %flex-center
+        align-items: initial
+        flex-wrap: wrap
+    &__img
+        width: 40px
+        height: 40px
+        @extend %flex-center
+        background: fade-out($color-night, 0.9)
+        border-bottom-left-radius: 5px
+        border-top-left-radius: 5px
+    &__ico
+        width: 15px
+        height: 15px
+        fill: fade-out($color-night, 0.8)
+    &__input
+        flex: 1 1 auto
+        padding-left: 15px
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 400
+        color: $color-night
+        border-bottom-right-radius: 5px
+        border-top-right-radius: 5px
+        border: 1px solid transparent
+        &:focus
+            border: 1px solid $color-aqua
+    &__robotsure-title
+        width: 100%
+        text-align: center
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 500
+        color: $color-night
+        margin-bottom: 10px
+
+
+.isrobot
+    @extend %flex-center
+    input
+        position: absolute
+        left: -9999px
+    &__title
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 300
+        color: $color-night
+    &__square
+        width: 20px
+        height: 20px
+        border-radius: 5px
+        border: 1px solid fade-out($color-night, 0.8)
+        // background: $color-aqua
+        @extend %flex-center
+        margin-right: 10px
+        transition: 0.2s
+    &__check
+        width: 0
+        height: 0
+        fill: fade-out($color-white, 0.1)
+        transition: 0.2s
+
+.isrobot>input:checked + .isrobot__square
+    background: $color-aqua
+.isrobot>input:checked + .isrobot__square>.isrobot__check
+    width: 12px
+    height: 10px
+
+.robotsure
+    @extend %flex-center
+    // width: 50%
+    margin: 0 20px
+    flex-wrap: wrap
+    margin-bottom: 10px
+    input
+        position: absolute
+        left: -9999px
+    &__custom
+        @extend %flex-center
+    &__title
+        font-family: 'roboto', sans-serif
+        font-size: 16px
+        font-weight: 300
+        color: $color-night
+        transition: 0.2s
+    &__circle
+        border: 1px solid fade-out($color-night, 0.8)
+        border-radius: 50%
+        width: 20px
+        height: 20px
+        @extend %flex-center
+        margin-right: 10px
+        &-inner
+            width: 0
+            height: 0
+            border-radius: 50%
+            transition: 0.2s
+            
+.robotsure>input:checked + .robotsure__custom>.robotsure__circle>.robotsure__circle-inner
+    background: $color-aqua
+    width: 8px
+    height: 8px
+.robotsure>input:checked + .robotsure__custom>.robotsure__title
+    color: $color-aqua
+
+
+
+
+
+
+
+
+
+
+.login__buttons
+    @extend .nav__pages
+    align-items: initial
+    &-main
+        @extend .nav__item
+        @extend .nav__pages
+        @extend .nav__link
+    &-submit
+        @extend .nav__item
+        @extend .nav__pages
+        @extend .nav__link
+        border: none
+
