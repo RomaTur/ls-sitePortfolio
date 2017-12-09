@@ -10352,6 +10352,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
     (0, _maps2.default)();
 
+    (0, _jquery2.default)('.welcome__login-button').on('click', function () {
+        (0, _jquery2.default)('.flip__container').addClass('flip__container--active');
+        (0, _jquery2.default)('.welcome__login-button').css('transition', 'initial');
+        (0, _jquery2.default)('.welcome__login-button').fadeOut(400);
+    });
+    (0, _jquery2.default)('.login__buttons-main').on('click', function () {
+        (0, _jquery2.default)('.flip__container').removeClass('flip__container--active');
+        (0, _jquery2.default)('.welcome__login-button').fadeIn(400, function () {
+            (0, _jquery2.default)('.welcome__login-button').css('transition', '0.2s');
+        });
+    });
+
     ///////
     console.log('entry done');
 });

@@ -10,6 +10,8 @@
         flex-direction: column
         border-radius: 5px
         padding-bottom: 10px
+        @extend %absolute-center
+        backface-visibility: hidden;
         // opacity: 0
         // display: none
         
@@ -47,6 +49,7 @@
     background: fade-out($color-white, 0.1)
     border-top-right-radius: 5px
     border-top-left-radius: 5px
+    height: 350px
     &__avatar
         width: 140px
         height: 140px
@@ -108,7 +111,7 @@
 .login
     @extend .welcome__intro
     // display: flex
-
+    transform: rotateY(180deg) translate(50%, -50%)
     &__container
         @extend .person
         padding: 10px 20px
@@ -234,14 +237,6 @@
     color: $color-aqua
 
 
-
-
-
-
-
-
-
-
 .login__buttons
     @extend .nav__pages
     align-items: initial
@@ -255,3 +250,12 @@
         @extend .nav__link
         border: none
 
+
+.flip__container
+    @extend %flex-center
+    transition: all 1s ease
+    transform-style: preserve-3d
+    transform-origin: 50% 50%
+    transform: perspective(900px) rotate3d(0,1,0,0deg)
+    &--active
+        transform: perspective(900px) rotate3d(0,1,0,-180deg)
