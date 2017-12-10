@@ -28,17 +28,19 @@
         .skills
             .skills__row.fronend
                 .skills__title Frontend
-                .skill HTML5
-                .skill CSS3
-                .skill Javascript & Jquery
+                +skillProgress('HTML','60')
+                +skillProgress('CSS3','70')
+                +skillProgress('Javascript & Jquery','30')
             .skills__row.backend
                 .skills__title Backend
-                .skill PHP
-                .skill mySQL
-                .skill Node.js & npm
-                .skill Mongo.db
+                +skillProgress('PHP','10')
+                +skillProgress('mySQL','15')
+                +skillProgress('Node.js & npm','20')
+                +skillProgress('Mongo.db','5')
             .skills__row.workflow
                 .skills__title Workflow
-                .skill Git
-                .skill Gulp
-                .skill Bower
+                +skillProgress('Git','60')
+                +skillProgress('Gulp','70')
+                +skillProgress('Webpack','40')
+
+            button(id='circleButton' name="percent") Кликни на меня

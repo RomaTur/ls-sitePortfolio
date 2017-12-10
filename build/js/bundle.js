@@ -10346,6 +10346,10 @@ var _flipLoginForm = __webpack_require__(7);
 
 var _flipLoginForm2 = _interopRequireDefault(_flipLoginForm);
 
+var _skillProgressInit = __webpack_require__(8);
+
+var _skillProgressInit2 = _interopRequireDefault(_skillProgressInit);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _jquery2.default)(function () {
@@ -10353,9 +10357,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     console.log('entry start');
 
     (0, _fullMenu2.default)('.hamburger__list', '.menu-close__list', '.menu');
-    (0, _maps2.default)();
+    // mapInit();
     (0, _flipLoginForm2.default)('welcome__login-button', 'login__buttons-main', 'flip__container'); //flip container need to be a class
-
+    (0, _skillProgressInit2.default)();
     ///////
     console.log('entry done');
 });
@@ -10570,6 +10574,44 @@ module.exports = function (loginButton, mainButton, flipContainer) {
             (0, _jquery2.default)('.' + loginButton).css('transition', '0.2s');
         });
     });
+};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+////Анимация svg колец для элементов 'скилы'
+
+module.exports = function () {
+
+    console.log('skillProgressInit start');
+
+    //обнуление значений
+    var skill = document.querySelectorAll('.skill'); //получение всех оберток где хранится data-pct
+    var svgCircles = document.querySelectorAll('.skill__bar'); //получение всех колец
+    for (var i = 0; i < svgCircles.length; i++) {
+        svgCircles[i].style.strokeDashoffset = Math.PI * 180; //обнуление
+    }
+
+    var percent = []; // массив значений взятых из html кода - которые туда были вставлены из админки через php
+    var svgCircle = void 0; //контейнер для отельного кольца
+    var offsetVal = 0; //новый показатель
+
+    document.querySelector('#circleButton').addEventListener('click', function () {
+        // событие когда все анимируется
+        for (var _i = 0; _i < skill.length; _i++) {
+            percent[_i] = parseInt(skill[_i].getAttribute('data-pct')); //берем значение 
+            console.log(percent[_i]);
+            svgCircle = skill[_i].getElementsByClassName('skill__bar'); //берем отдельное кольцо
+            offsetVal = (100 - percent[_i]) / 100 * Math.PI * 180; //значение для присвоения кольцу
+            svgCircle[0].style.strokeDashoffset = offsetVal; //запихиваем и происходит анимация через transition
+        }
+    });
+
+    console.log('skillProgressInit done');
 };
 
 /***/ })

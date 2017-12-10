@@ -106,8 +106,8 @@ function fontsBuild(){
 };
 
 //Просто перетаскивание favicon
-function faviconBuild(){
-    return gulp.src(paths.src + 'favicon.ico')
+function rootFilesBuild(){
+    return gulp.src([paths.src + 'favicon.ico', paths.src + '.htaccess'])
                 .pipe(plumber())
                 .pipe(gulp.dest(paths.build.self))
                 .pipe(browserSync.reload({stream: true}));
@@ -182,7 +182,7 @@ function clean(){
 
 exports.imgBuild = imgBuild;
 exports.fontsBuild = fontsBuild;
-exports.faviconBuild = faviconBuild;
+exports.rootFilesBuild = rootFilesBuild;
 exports.phpBuild = phpBuild;
 exports.sassBuild = sassBuild;
 exports.spriteBuild = spriteBuild;
@@ -191,7 +191,7 @@ exports.htmlBuild = htmlBuild;
 
 exports.clean = clean;
 
-gulp.task('preBuild', gulp.series(imgBuild, fontsBuild, faviconBuild, phpBuild, sassBuild, spriteBuild, scriptsBuild, htmlBuild));
+gulp.task('preBuild', gulp.series(imgBuild, fontsBuild, rootFilesBuild, phpBuild, sassBuild, spriteBuild, scriptsBuild, htmlBuild));
 
 // Наблюдение за файлами
 function watch(){
