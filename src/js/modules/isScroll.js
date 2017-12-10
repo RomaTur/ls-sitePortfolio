@@ -1,8 +1,8 @@
 //функция разрешения/запрета скролла//
-var prevDef = function(event){
+let prevDef = (event) => {
     event.preventDefault();
 }
-module.exports = function(bool){
+module.exports = (bool) => {
     console.log('in isScroll.js');
     document.onmousewheel=document.onwheel=function(){
 return (!bool) ? false : true;    };

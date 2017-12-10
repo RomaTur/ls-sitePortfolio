@@ -21,12 +21,14 @@ const svgmin        = require('gulp-svgmin');
 const cheerio       = require('gulp-cheerio');
 const gulpWebpack   = require('gulp-webpack');
 const webpack       = require('webpack');
+const sftp          = require('gulp-sftp');
 // const gutil         = require('gulp-util');
 // const notifier      = require('node-notifier');
 // const babel         = require('gulp-babel');
 
+var sftpConfig = require('./.sftpConfig.json');
 
-let webpackConfig = require('./webpack.config.js');
+const webpackConfig = require('./webpack.config.js');
 // let statsLog      = { // для красивых логов в консоли
 //   colors: true,
 //   reasons: true
@@ -34,7 +36,7 @@ let webpackConfig = require('./webpack.config.js');
 
 const paths =  {
     src:{
-        self: 'src',
+        self: 'src/',
         sass:'./src/sass/',
         pug: './src/pug/',
         img: './src/img/',
@@ -43,7 +45,7 @@ const paths =  {
         php: './src/php/'
     },
     build:{
-        self: 'build',
+        self: 'build/',
         css: './build/css/',
         js: './build/js/',
         html: './build/',
@@ -54,6 +56,18 @@ const paths =  {
     all: '**/*.*',
     project: 'ls-sitePortfolio/' // paths.project - name of project
 };
+
+
+
+/*------------------------------------------------*/
+
+var onError = function(error){
+    gutil.beep();
+    console.log(error);
+};
+
+/*------------------------------------------------*/
+
 
 
 ////////////////////////////////////
@@ -177,9 +191,7 @@ exports.htmlBuild = htmlBuild;
 
 exports.clean = clean;
 
-gulp.task('preBuild', gulp.series(clean,
-    gulp.series(imgBuild, fontsBuild, faviconBuild, phpBuild, sassBuild, spriteBuild, scriptsBuild, htmlBuild))
-);
+gulp.task('preBuild', gulp.series(imgBuild, fontsBuild, faviconBuild, phpBuild, sassBuild, spriteBuild, scriptsBuild, htmlBuild));
 
 // Наблюдение за файлами
 function watch(){
@@ -213,3 +225,13 @@ exports.serve = serve;
 gulp.task('default', gulp.series(
   'build', gulp.parallel(watch, serve)
 ));
+
+
+////////загрузка на удаленный сервер///////
+gulp.task('deploy',() => {
+    return gulp.src(paths.build.self+'**/*.*')
+        .pipe(plumber({
+            errorHandler: onError
+        }))
+        .pipe(sftp(sftpConfig));
+});

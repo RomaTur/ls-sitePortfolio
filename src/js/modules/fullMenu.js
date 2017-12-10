@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import isScroll from './isScroll';
 
-export default function fullMenu(openClass, closeClass, viewClass){
+module.exports = (openClass, closeClass, viewClass) => {
     /////
     console.log('fullMenu start');
     //////

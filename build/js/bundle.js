@@ -10342,6 +10342,10 @@ var _maps = __webpack_require__(4);
 
 var _maps2 = _interopRequireDefault(_maps);
 
+var _flipLoginForm = __webpack_require__(7);
+
+var _flipLoginForm2 = _interopRequireDefault(_flipLoginForm);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _jquery2.default)(function () {
@@ -10349,20 +10353,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     console.log('entry start');
 
     (0, _fullMenu2.default)('.hamburger__list', '.menu-close__list', '.menu');
-
     (0, _maps2.default)();
-
-    (0, _jquery2.default)('.welcome__login-button').on('click', function () {
-        (0, _jquery2.default)('.flip__container').addClass('flip__container--active');
-        (0, _jquery2.default)('.welcome__login-button').css('transition', 'initial');
-        (0, _jquery2.default)('.welcome__login-button').fadeOut(400);
-    });
-    (0, _jquery2.default)('.login__buttons-main').on('click', function () {
-        (0, _jquery2.default)('.flip__container').removeClass('flip__container--active');
-        (0, _jquery2.default)('.welcome__login-button').fadeIn(400, function () {
-            (0, _jquery2.default)('.welcome__login-button').css('transition', '0.2s');
-        });
-    });
+    (0, _flipLoginForm2.default)('welcome__login-button', 'login__buttons-main', 'flip__container'); //flip container need to be a class
 
     ///////
     console.log('entry done');
@@ -10375,11 +10367,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = fullMenu;
-
 var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
@@ -10390,7 +10377,7 @@ var _isScroll2 = _interopRequireDefault(_isScroll);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function fullMenu(openClass, closeClass, viewClass) {
+module.exports = function (openClass, closeClass, viewClass) {
     /////
     console.log('fullMenu start');
     //////
@@ -10455,38 +10442,33 @@ module.exports = function (bool) {
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function () {
-  ////////////
-  console.log('mapsInit start');
-  ///////////
-  _ymaps2.default.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU').then(function (maps) {
-
-    var map = new maps.Map('map', {
-      center: [54.922788, 43.294844],
-      controls: [''],
-      zoom: 13
-    });
-    map.behaviors.disable('scrollZoom');
-  }).catch(function (error) {
-    return console.log('Failed to load Yandex Maps', error);
-  });
-
-  ////////////
-  console.log('mapsInit done');
-  ///////////
-};
-
 var _ymaps = __webpack_require__(5);
 
 var _ymaps2 = _interopRequireDefault(_ymaps);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-;
+module.exports = function () {
+  ////////////
+  console.log('mapsInit start');
+  ///////////
+  _ymaps2.default.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU').then(function (maps) {
+    ////////основные настройки
+    var map = new maps.Map('map', {
+      center: [54.922788, 43.294844],
+      controls: [''],
+      zoom: 13
+    });
+    ////////////дополнительные настройки 
+    map.behaviors.disable('scrollZoom');
+    ///////////////////////////////////
+  }).catch(function (error) {
+    return console.log('Failed to load Yandex Maps', error);
+  });
+  ////////////
+  console.log('mapsInit done');
+  ///////////
+};
 
 /***/ }),
 /* 5 */
@@ -10561,6 +10543,34 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = function (loginButton, mainButton, flipContainer) {
+
+    (0, _jquery2.default)('.' + loginButton).on('click', function () {
+        (0, _jquery2.default)('.' + flipContainer).addClass(flipContainer + '--active');
+        (0, _jquery2.default)('.' + loginButton).css('transition', 'initial');
+        (0, _jquery2.default)('.' + loginButton).fadeOut(400);
+    });
+    (0, _jquery2.default)('.' + mainButton).on('click', function () {
+        (0, _jquery2.default)('.' + flipContainer).removeClass(flipContainer + '--active');
+        (0, _jquery2.default)('.' + loginButton).fadeIn(400, function () {
+            (0, _jquery2.default)('.' + loginButton).css('transition', '0.2s');
+        });
+    });
+};
 
 /***/ })
 /******/ ]);
