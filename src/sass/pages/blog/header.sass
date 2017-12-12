@@ -25,12 +25,17 @@
     // height: 100%
     z-index: 1
     padding-top: 15px
+    @include phone
+        padding-top: 0
+        padding-bottom: 100px
     &__avatar
         width: 140px
         height: 140px
         margin-bottom: 20px
         background: #ffffff
         border-radius: 50%
+        @include phone
+            margin-bottom: 25px
 .page
     &__title
         position: relative
@@ -38,14 +43,19 @@
         &-text
             font-family: 'bernier', sans-serif
             font-weight: 300
-            font-size: 65px
+            font-size: rem(65px)
             line-height: 1
             color: $color-white
+            @include phone
+                font-size: 35px
+                margin-bottom: 5px
         &-line
             width: 22px
             height: 5px
             margin: 0 16px
             background: fade-out($color-white, 0.5)
+            @include phone
+                display: none
     &__bg-text
         @extend %absolute-center
         top: 80%
@@ -54,8 +64,8 @@
         height: 200px
     &__desc
         font-family: 'roboto', sans-serif
-        font-size: 16px
-        font-weight: 500
+        font-size: rem(16px)
+        font-weight: 400
         color: $color-white
 
 
