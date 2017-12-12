@@ -10357,9 +10357,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     console.log('entry start');
 
     (0, _fullMenu2.default)('.hamburger__list', '.menu-close__list', '.menu');
-    // mapInit();
+    (0, _maps2.default)();
     (0, _flipLoginForm2.default)('welcome__login-button', 'login__buttons-main', 'flip__container'); //flip container need to be a class
-    (0, _skillProgressInit2.default)();
+    (0, _skillProgressInit2.default)('skill', 'skill__bar', 'data-pct'); //классы без .
     ///////
     console.log('entry done');
 });
@@ -10583,33 +10583,32 @@ module.exports = function (loginButton, mainButton, flipContainer) {
 "use strict";
 
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 ////Анимация svg колец для элементов 'скилы'
 
-module.exports = function () {
+module.exports = function (container, bar, attr) {
 
     console.log('skillProgressInit start');
 
-    //обнуление значений
-    var skill = document.querySelectorAll('.skill'); //получение всех оберток где хранится data-pct
-    var svgCircles = document.querySelectorAll('.skill__bar'); //получение всех колец
-    for (var i = 0; i < svgCircles.length; i++) {
-        svgCircles[i].style.strokeDashoffset = Math.PI * 180; //обнуление
-    }
-
-    var percent = []; // массив значений взятых из html кода - которые туда были вставлены из админки через php
-    var svgCircle = void 0; //контейнер для отельного кольца
-    var offsetVal = 0; //новый показатель
-
-    document.querySelector('#circleButton').addEventListener('click', function () {
-        // событие когда все анимируется
-        for (var _i = 0; _i < skill.length; _i++) {
-            percent[_i] = parseInt(skill[_i].getAttribute('data-pct')); //берем значение 
-            console.log(percent[_i]);
-            svgCircle = skill[_i].getElementsByClassName('skill__bar'); //берем отдельное кольцо
-            offsetVal = (100 - percent[_i]) / 100 * Math.PI * 180; //значение для присвоения кольцу
-            svgCircle[0].style.strokeDashoffset = offsetVal; //запихиваем и происходит анимация через transition
-        }
+    var skill = [].concat(_toConsumableArray(document.querySelectorAll('.' + container))); //получение всех оберток где хранится data-pct
+    var svgCircles = [].concat(_toConsumableArray(document.querySelectorAll('.' + bar))); //получение всех колец
+    var percent = []; // массив значений взятых из html кода - которые туда были вставлены из админки через backend
+    var currentCircle = void 0; //контейнер для отельного кольца
+    var circleButton = document.querySelector('#circleButton'); //выбрали кнопку
+    //событие, которое присваивает значение кольцам
+    var handleClick = function handleClick() {
+        skill.forEach(function (item, i) {
+            percent[i] = parseInt(item.getAttribute(attr)); //получили значение процентов и перевели в number
+            currentCircle = item.getElementsByClassName(bar); //выбрали кольцо из текущей обертки
+            currentCircle[0].style.strokeDashoffset = (100 - percent[i]) / 100 * Math.PI * 180; // присваивание текущему кольцу значения переведенному для спец свойства svg из процентов
+        });
+    };
+    //обнуление значений во всех кольцах
+    svgCircles.forEach(function (i) {
+        i.style.strokeDashoffset = Math.PI * 180;
     });
+    circleButton.addEventListener('click', handleClick);
 
     console.log('skillProgressInit done');
 };

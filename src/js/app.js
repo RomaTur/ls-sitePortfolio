@@ -8,9 +8,9 @@ $(function(){
     console.log('entry start');
 
     fullMenu('.hamburger__list', '.menu-close__list', '.menu');
-    // mapInit();
+    mapInit();
     flipLoginForm('welcome__login-button', 'login__buttons-main', 'flip__container'); //flip container need to be a class
-    skillProgressInit()
+    skillProgressInit('skill','skill__bar','data-pct')//классы без .
     ///////
     console.log('entry done');
 });

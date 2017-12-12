@@ -7,14 +7,18 @@
 
 .article
     &__list
-        margin-right: 95px
-        width: 280px
+        margin-right: 115px
+        width: 290px
+        margin-top: 10px
+        @include desktop
+            margin-right: 100px
         // flex: 1 1 auto
     &__item
         color: $color-night
         transition: 0.2s
+        margin-bottom: 8px
         &--active
-            border-right: 2px solid $color-aqua
+            border-right: 3px solid $color-aqua
             color: $color-aqua
             .article__link
                 font-weight: 500
@@ -23,41 +27,80 @@
         font-size: 16px
         font-weight: 400
         transition: 0.2s
-        padding: 14px 20px
+        padding: 10px 19px
         text-align: right
+        line-height: 1.5
 .articles
-    width: 680px
+    // padding-top: 10px
+    width: 980px
+    margin-right: 210px
+    margin-bottom: 10px
+    @include desktop
+        width: 680px
+        margin-right: 90px
+    @include laptop
+        width: 500px
+
 .article
     @extend %flex-center
     align-items: flex-start
     flex-direction: column
-    padding-bottom: 70px
     margin-bottom: 60px
-    border-bottom: 5px solid fade-out($color-grey, 0.9)
+    &:after
+        content: ''
+        width: 680px
+        height: 5px
+        margin-top: 70px
+        background: fade-out($color-grey, 0.9)
+    &:last-child
+        &:after
+            height: 0
+            margin-top: 0
+    @include desktop
+        &:after
+            height: 0
+            margin-top: 0
+        padding-bottom: 59px
+        border-bottom: 5px solid fade-out($color-grey, 0.9)
+    
+
     &:last-child
         border: none
         padding-bottom: 0
     &__title
         font-family: 'bernier', sans-serif
-        font-size: 30px
+        font-size: 35px
         font-weight: 300
         color: $color-night
-        margin-bottom: 25px
-        width: 540px
+        margin-bottom: 15px
+        width: 800px
+        line-height: 1.3
+        @include desktop
+            width: 630px
+        @include laptop
+            width: 480px
     &__date
         font-family: 'roboto', sans-serif
         font-size: 16px
         font-weight: 300
         color: $color-aqua
         margin-bottom: 20px
+        margin-top: 0
     &__text
         &-paragraph
             font-family: 'roboto', sans-serif
             font-size: 16px
             font-weight: 400
             color: $color-night
-            margin-bottom: 20px
+            margin-bottom: 15px
+            margin-top: 0
+            line-height: 1.6
+            padding-right: 100px
+            @include desktop
+                padding-right: 0
             &:last-child
                 margin-bottom: 0
         &-code
             width: 100%
+.code
+    height: 120px

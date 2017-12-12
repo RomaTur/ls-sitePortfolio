@@ -143,7 +143,9 @@ function sassBuild(){
     return gulp.src(paths.src.sass + '*.sass')
         .pipe(plumber())
         .pipe(sassGlob())
-        .pipe(sass())// компиляция
+        .pipe(sass({
+            includePaths: require('node-normalize-scss').includePaths
+        }))// компиляция
         .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
         .pipe(groupMediaQueries())// группировка медиазапросов
         .pipe(cleanCSS()) //минификация

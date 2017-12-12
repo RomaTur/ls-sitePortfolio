@@ -4,29 +4,37 @@
     // margin-bottom: 150px
     border-radius: 5px
     &__container
-        padding: 0 20px 20px 20px
+        padding: 45px 20px 20px 20px
         background: fade-out($color-white, 0.5)
         // filter: blur(3px)
         @extend %flex-center
         flex-direction: column
+        @include tablet
+            padding: 30px 20px 20px 20px
+
         
     &__title
         @extend %flex-center
         align-items: flex-start
         position: relative
         width: 100%
-        padding: 40px 0
+        margin-bottom: 25px
+        @include tablet
+            margin-bottom: 5px
         &-text
             font-family: 'bernier', sans-serif
             font-weight: 300
-            font-size: 32px
+            font-size: 35px
             color: $color-night
-            // width: 11ch
+            width: 280px
             text-align: center
+            @include tablet
+                width: 250px
+                font-size: 30px
         &-line
             width: 22px
             height: 5px
-            margin: 17px 16px
+            margin: 20px 4px
             background: fade-out($color-night, 0.5)
     &__inputs
         @extend %flex-center
@@ -40,8 +48,8 @@
         width: 100%
         border: 1px solid transparent
         border-radius: 5px
-        padding: 16px 20px
-        margin-bottom: 20px
+        padding: 15px 20px
+        margin-bottom: 18px
         font-size: 14px
         transition: 0.2s
         &:focus
@@ -58,7 +66,7 @@
         align-items: initial
     &__submit    
         flex: 1
-        padding: 10px 0
+        padding: 12px 0
         text-align: center
         border-radius: 0
         border-bottom-left-radius: 5px
@@ -75,7 +83,7 @@
             background: $color-aqua2
     &__clean
         flex: 1
-        padding: 10px 0
+        padding: 12px 0
         text-align: center
         border-bottom-right-radius: 5px
         background: $color-aqua

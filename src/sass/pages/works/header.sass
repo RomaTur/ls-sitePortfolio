@@ -32,23 +32,33 @@
     flex-direction: column
     // height: 100%
     z-index: 1
+    padding-bottom: 34px
+    @include phone
+        padding-bottom: 90px
     &__avatar
         width: 140px
         height: 140px
-        margin-bottom: 10px
+        margin-bottom: 20px
         background: #ffffff
         border-radius: 50%
+        @include phone
+            margin-bottom: 25px
     &__name
         font-family: 'roboto', sans-serif
         font-weight: 500
-        font-size: 28px
-        margin-bottom: 3px
+        font-size: rem(34px)
+        margin-bottom: 0px
         color: $color-white
+        @include phone
+            font-size: 22px
+            margin-bottom: 5px
     &__desc
         font-family: 'roboto', sans-serif
         font-weight: 400
-        font-size: 16px
+        font-size: rem(16px)
         margin-bottom: 30px
         color: $color-white
+        @include tablet
+            margin-bottom: 10px
 
 

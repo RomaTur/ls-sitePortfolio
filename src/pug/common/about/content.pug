@@ -5,17 +5,17 @@
             .page__title-line
             h1.page__title-text Обо мне
             .page__title-line
-        
-        .page__avatar
-            img(src="img/avatar.png", alt="avatar")
         .page__about
-            .page__about-title
-                .page__title-line
-                h3.page__title-text Кто я
-                .page__title-line
-            .page__about-desc
-                p.page__about-paragraph Я веб разработчик из Сарова. Мне 23 года. Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
-                p.page__about-paragraph Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+            .page__about-avatar
+                img(src="img/avatar.png", alt="avatar")
+            .page__about-text
+                .page__about-title
+                    .page__title-line
+                    h3.page__title-text Кто я
+                    .page__title-line
+                .page__about-desc
+                    p.page__about-paragraph Я веб разработчик из Сарова. Мне 23 года. Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                    p.page__about-paragraph Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
 
     .content__right
@@ -30,7 +30,7 @@
                 .skills__title Frontend
                 +skillProgress('HTML','60')
                 +skillProgress('CSS3','70')
-                +skillProgress('Javascript & Jquery','30')
+                +skillProgress('Javascript & JQuery','30')
             .skills__row.backend
                 .skills__title Backend
                 +skillProgress('PHP','10')
@@ -38,7 +38,7 @@
                 +skillProgress('Node.js & npm','20')
                 +skillProgress('Mongo.db','5')
             .skills__row.workflow
-                .skills__title Workflow
+                .skills__title WorkFlow
                 +skillProgress('Git','60')
                 +skillProgress('Gulp','70')
                 +skillProgress('Webpack','40')

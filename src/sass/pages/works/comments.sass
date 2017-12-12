@@ -2,30 +2,41 @@
     @extend %flex-center
     flex-direction: column
     width: 100%
-    margin-bottom: 65px
+    margin-bottom: 50px
     &__title
         @extend %flex-center
         align-items: flex-start
         position: relative
         width: 100%
-        padding: 50px 0
+        padding: 60px 0
+        @include tablet
+            align-items: center
+            padding: 40px 0
         &-text
             font-family: 'bernier', sans-serif
             font-weight: 300
-            font-size: 50px
+            font-size: 60px
             color: $color-night
-            width: 11ch
+            line-height: 1.05
+            letter-spacing: 1px
+            width: 280px
             text-align: center
+            @include tablet
+                font-size: 46px
+                width: 370px
+            @include phone
+                font-size: 33px
         &-line
             width: 22px
             height: 5px
-            margin: 30px 16px
+            margin: 0 16px
             background: fade-out($color-night, 0.8)
         &-bg
             @extend %absolute-center
-            top: 40%
+            top: 45%
             fill: fade-out($color-night, 0.92)
             width: 500px
+            height: 400px
 
     &__views
         @extend %flex-center
@@ -33,21 +44,33 @@
 
 
 .comment
-    width: 370px
-    display: flex
-    flex-direction: column
-    margin: 0 30px
+    width: 380px
+    // display: flex
+    // flex-direction: column
+    margin: 0 10px
+    @include tablet
+        width: 50%
+        max-width: 350px
     &__text
         flex: 1
         font-family: 'roboto', sans-serif
         font-size: 16px
         font-weight: 400
-        margin-bottom: 25px
+        margin-bottom: 20px
+        line-height: 1.6
+        @include tablet
+            font-size: 14px
+            margin-top: 5px 
+            line-height: 1.7
+            margin-bottom: 15px
     &__ico
-        width: 50px
-        height: 50px
+        width: 30px
+        height: 30px
         fill: fade-out($color-night, 0.8)
-        margin-bottom: 30px
+        margin-bottom: 3px
+        @include tablet
+            width: 33px
+            height: 33px
     &__person
         display: flex
         align-items: center
@@ -57,12 +80,14 @@
             height: 80px
             border-radius: 50%
         &-desc
-            margin-left: 23px
+            margin-left: 20px
             display: flex
             flex-direction: column
             font-family: 'roboto', sans-serif
             color: $color-aqua
             font-size: 16px
+            @include tablet
+                font-size: 14px
         &-name
             font-weight: 500
         &-prof

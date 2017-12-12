@@ -5,14 +5,22 @@
 @mixin bg-img($url)
     background-image: url($url)
 
+@mixin desktop
+    @media (max-width:1799px)
+        @content
+
 @mixin laptop
-    @media (max-width:1800px)
+    @media (max-width:1199px)
         @content
 
 @mixin tablet
-    @media (max-width:768px)
+    @media (max-width:1024px)
         @content
 
 @mixin phone
     @media (max-width:480px)
+        @content
+
+@mixin minHeight
+    @media (max-height:560px)
         @content
