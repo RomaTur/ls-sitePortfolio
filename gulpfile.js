@@ -29,10 +29,7 @@ const sftp          = require('gulp-sftp');
 var sftpConfig = require('./.sftpConfig.json');
 
 const webpackConfig = require('./webpack.config.js');
-// let statsLog      = { // для красивых логов в консоли
-//   colors: true,
-//   reasons: true
-// };
+
 
 const paths =  {
     src:{
@@ -85,17 +82,6 @@ function imgBuild(){
             .pipe(gulp.dest(paths.build.img))
             .pipe(browserSync.reload({stream: true})); //перезагрузка браузера
 };
-
-// gulp.task('img:build',function(){
-//     return gulp.src([paths.src.img + '**/*.{jpg,png,jpeg}'])
-//             .pipe(plumber())
-//             .pipe(imagemin({ // скудное сжатие
-//                 progressive: true,
-//                 interlaced: true
-//             }))
-//             .pipe(gulp.dest(paths.build.img))
-//             .pipe(browserSync.reload({stream: true})); //перезагрузка браузера
-// });
 
 //Просто перетаскивание шрифтов( потом добавлю их обработку )
 function fontsBuild(){

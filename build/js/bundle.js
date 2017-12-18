@@ -86,6 +86,10 @@ var _skillProgressInit = __webpack_require__(7);
 
 var _skillProgressInit2 = _interopRequireDefault(_skillProgressInit);
 
+var _containerToggleClass = __webpack_require__(8);
+
+var _containerToggleClass2 = _interopRequireDefault(_containerToggleClass);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var domready = function domready() {
@@ -96,6 +100,9 @@ var domready = function domready() {
     (0, _maps2.default)();
     (0, _flipLoginForm2.default)('welcome__login-button', 'login__buttons-main', 'flip__container'); //flip container need to be a class
     (0, _skillProgressInit2.default)('skill', 'skill__bar', 'data-pct'); //классы без .
+
+    (0, _containerToggleClass2.default)('article__list', 'article__list-circle');
+
     ///////
     console.log('entry done');
 };
@@ -361,6 +368,33 @@ module.exports = function (container, bar, attr) {
         circleButton.addEventListener('click', handleClick);
     }
     console.log('skillProgressInit done');
+};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (sideBarClass, buttonClass) {
+
+    ////////////
+    console.log('blogSideBar start');
+
+    var sideBar = document.querySelector('.' + sideBarClass);
+    var button = document.querySelector('.' + buttonClass);
+
+    var containerToggle = function containerToggle() {
+        sideBar.classList.toggle(sideBarClass + '--active');
+    };
+
+    if (sideBar && button) {
+        button.addEventListener('click', containerToggle);
+    }
+
+    console.log('blogSideBar done');
+    ///////////////
 };
 
 /***/ })

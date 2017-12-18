@@ -30,7 +30,7 @@
             padding: 0 10px
             transition: 0.4s
             margin-right: 0
-            &:after
+            &-circle
                 content: ''
                 width: 45px
                 height: 45px
@@ -40,22 +40,23 @@
                 left: -30px
                 border-radius: 50%
                 transition: 0.4s
+                cursor: pointer
             
                 
         @include phone
             width: 300px
             left: -300px
-            &:after
+            &-circle
                 left: -35px
 
         &--active
             @include tablet
                 left: 0
-                &:after
+                .article__list-circle
                     left: 425px
             @include phone
                 left: 0
-                &:after
+                .article__list-circle
                     left: 265px
     &__item
         color: $color-night
