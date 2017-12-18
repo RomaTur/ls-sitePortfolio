@@ -21,8 +21,9 @@ module.exports = (container, bar, attr) => {
     svgCircles.forEach(i => {
         i.style.strokeDashoffset = Math.PI*180;
     })
-    circleButton.addEventListener('click', handleClick);
-
+    if(skill && svgCircles && circleButton){
+        circleButton.addEventListener('click', handleClick);
+    }
     console.log('skillProgressInit done');
     
 };

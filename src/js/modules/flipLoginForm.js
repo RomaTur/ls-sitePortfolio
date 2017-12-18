@@ -1,17 +1,25 @@
-import $ from 'jquery'
 
 module.exports = (loginButton, mainButton, flipContainer) =>{
-    
 
-    $('.'+loginButton).on('click', function(){
-        $('.'+flipContainer).addClass(flipContainer+'--active');
-        $('.'+loginButton).css('transition', 'initial');
-        $('.'+loginButton).fadeOut(400);
+    console.log('flipLoginForm start');
+    
+let flip = document.querySelector('.'+flipContainer);
+let login = document.querySelector('.'+loginButton);
+let main = document.querySelector('.'+mainButton);
+    
+if(flip && login && main){
+    login.addEventListener('click',function(){
+        flip.classList.add(flipContainer+'--active');
+        login.style.opacity = '0';
+        login.style.cursor = 'default';
+        
     });
-    $('.'+mainButton).on('click', ()=>{
-        $('.'+flipContainer).removeClass(flipContainer+'--active');
-        $('.'+loginButton).fadeIn(400, ()=>{
-            $('.'+loginButton).css('transition', '0.2s');
-        });
+
+    main.addEventListener('click',function(){
+        flip.classList.remove(flipContainer+'--active');
+        login.style.opacity = '1';
+        login.style.cursor = 'pointer';
     });
+}
+    console.log('flipLoginForm done')
 };

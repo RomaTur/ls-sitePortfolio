@@ -4,6 +4,10 @@ module.exports = () => {
     ////////////
     console.log('mapsInit start');
     ///////////
+
+    // if(document.getElementById('map')) return 0;
+
+    //////////
     ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU').then(maps => {
         ////////основные настройки
         const map = new maps.Map('map', {

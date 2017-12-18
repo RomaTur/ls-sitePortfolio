@@ -1,29 +1,31 @@
-import $ from 'jquery'
 import isScroll from './isScroll';
 
 module.exports = (openClass, closeClass, viewClass) => {
     /////
     console.log('fullMenu start');
     //////
-    let open = $(openClass);
-    let close = $(closeClass);
-    let view = $(viewClass);
+    
 
-    open.on('click', (event) => {
-        console.log('click');
-        view.fadeIn(400);
-        close.fadeIn(400);
-        open.fadeOut(400);
+    let open = document.querySelector('.'+openClass);
+    let close = document.querySelector('.'+closeClass);
+    let view = document.querySelector('.'+viewClass);
+
+
+    if(open && close && view){
+    open.addEventListener('click',()=>{
+        view.classList.add(viewClass+'--active');
+        open.style.display = 'none';
+        close.style.display = 'block'
         isScroll(false);
     });
-    close.on('click', (event) => {
-        console.log('click');
-        view.fadeOut(400);
-        close.fadeOut(400);
-        open.fadeIn(400);
+    close.addEventListener('click',()=>{
+        view.classList.remove(viewClass+'--active');
+        open.style.display = 'block';
+        close.style.display = 'none'
         isScroll(true);
     });
-    
+    }
+
     ///////
     console.log('fullMenu done');
 };
