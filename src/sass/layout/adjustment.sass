@@ -223,6 +223,8 @@ button
         height: 16px
         fill: fade-out($color-white, 0.3)
         transition: 0.2s
+        @include ie
+            top: 90%
         @include phone
             bottom: 43px
         &:hover
@@ -270,12 +272,15 @@ button
             &:last-child
                 margin-right: 0
         &__ico
-            width: 33px
-            height: 33px
-            fill: fade-out($color-white, 0.1)
+            width: 35px
+            height: 35px
+            fill: transparent
             transition: 0.2s
+            stroke-width: 2px
+            stroke: fade-out($color-white2, 0.3)
             &:hover
                 fill: $color-aqua
+                stroke-width: 0px
     &__desc
         @extend %flex-center
         justify-content: space-between

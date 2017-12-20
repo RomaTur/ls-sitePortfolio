@@ -33,11 +33,14 @@
     border-radius: 5px
     position: absolute
     top: 20%
+    @include ie
+        transform: translate(-50%, 0)
     @include tablet
         width: 350px
         // margin-bottom: 100px
     @include phone
-        left: 0
+        left: 50%
+        transform: translate(-50%,0)
         display: flex
         justify-content: center
         align-items: center

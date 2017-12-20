@@ -74,6 +74,7 @@
   "dependencies": {
     "gulp": "github:gulpjs/gulp#4.0",
     "progress": "^2.0.0",
+    "svg4everybody": "^2.1.9",
     "ymaps": "^0.1.1"
   }
 }

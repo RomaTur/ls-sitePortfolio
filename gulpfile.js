@@ -85,7 +85,7 @@ function imgBuild(){
 
 //Просто перетаскивание шрифтов( потом добавлю их обработку )
 function fontsBuild(){
-    return gulp.src(paths.src.fonts + paths.all)
+    return gulp.src(paths.src.fonts + '*.*')
                 .pipe(plumber())
                 .pipe(gulp.dest(paths.build.fonts))
                 .pipe(browserSync.reload({stream: true}));

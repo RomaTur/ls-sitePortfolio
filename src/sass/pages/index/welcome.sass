@@ -12,9 +12,9 @@
         border-radius: 5px
         padding-bottom: 10px
         @extend %absolute-center
-        backface-visibility: hidden;
-        // opacity: 0
-        // display: none
+        backface-visibility: hidden
+        @include ie
+            backface-visibility: visible
         @include tablet
             width: 350px
             padding-bottom: 0
@@ -57,6 +57,8 @@
         font-size: rem(16px)
         font-weight: 300
         color: $color-white
+        @include ie
+            transform: translate(-50%,0)
         @include desktop
             padding-bottom: 27px
         @include phone
@@ -127,9 +129,11 @@
         font-weight: 500
         font-size: rem(16px)
         width: 100%
+        align-items: stretch
         
     &__item
         flex: 1 1 auto
+        border: 1px solid transparent
         border-right: 2px solid lighten($color-aqua, 10%)
         background: fade-out($color-aqua, 0.05)
         transition: 0.2s
@@ -156,6 +160,9 @@
     // @include phone
     //     padding-top: 0
     //     margin-top: -17px
+    @include ie
+        display: none
+        transform: initial
 
     &__container
         @extend .person
@@ -188,7 +195,7 @@
     &__inputs-row
         margin-bottom: 20px
         @extend %flex-center
-        align-items: initial
+        align-items: stretch
         flex-wrap: wrap
         @include tablet
             margin-bottom: 22px
@@ -223,7 +230,7 @@
         text-align: center
         font-family: 'roboto', sans-serif
         font-size: 16px
-        font-weight: 500
+        font-weight: 300
         color: $color-night
         margin-bottom: 6px
         margin-top: -5px
@@ -301,7 +308,7 @@
 
 .login__buttons
     @extend .nav__pages
-    align-items: initial
+    align-items: stretch
     &-main
         @extend .nav__item
         @extend .nav__pages
@@ -338,8 +345,20 @@
     transform-origin: 50% 50%
     transform: perspective(900px) rotate3d(0,1,0,0deg)
     @include minHeight
-        transform: perspective(1000px) rotate3d(0,1,0,0deg) 
+        transform: perspective(1000px) rotate3d(0,1,0,0deg)
+    @include ie
+        transform: initial
+        transition: 0s
+        transform-style: initial
+        transform-origin: initial
     &--active
         transform: perspective(900px) rotate3d(0,1,0,-180deg)
         @include minHeight
             transform: perspective(1000px) rotate3d(0,1,0,-180deg) 
+        @include ie
+            transform: initial
+            .welcome__intro
+                display: none
+            .login
+                display: flex
+

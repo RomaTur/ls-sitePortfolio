@@ -35,8 +35,10 @@
         &-line
             width: 22px
             height: 5px
-            margin: 0 16px
+            margin: 25px 16px
             background: fade-out($color-night, 0.8)
+            @include tablet
+                margin: 0 16px
             @include phone
                 margin: 0 5px
         &-bg
@@ -55,6 +57,7 @@
     &__views
         @extend %flex-center
         align-items: initial
+        max-width: 100%
         @include phone
             flex-direction: column
 
@@ -81,6 +84,9 @@
         font-weight: 400
         margin-bottom: 20px
         line-height: 1.6
+        max-width: 100%
+        @include ie
+            min-height: 70px
         @include tablet
             font-size: 14px
             margin-top: 5px 
