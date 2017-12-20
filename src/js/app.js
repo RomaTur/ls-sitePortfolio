@@ -17,7 +17,7 @@ let domready = function () {
     fullMenu('hamburger__list', 'menu-close__list', 'menu');
 
     blurForm();
-
+    
     mapInit('map');
 
     let doSkillProgress = skillProgressInit('skill', 'skill__bar', 'data-pct'); //классы без .
