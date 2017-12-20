@@ -18,14 +18,12 @@ mixin listItem(text, className, href, name, secClass)
         li(class= className+'__item')= text
 
 mixin headerSame()
-    ul.hamburger__list
-        - for(var i=0; i<3; i++){
-            +listItem('','hamburger')
-        - }
-    ul.menu-close__list
-        - for(var i=0; i<2; i++){
-            +listItem('','menu-close', '#')
-        - }
+    .hamburger
+        ul.hamburger__list
+            li.hamburger__line.hamburger__line--one
+            li.hamburger__line.hamburger__line--two
+            li.hamburger__line.hamburger__line--three
+    
     .menu
         ul.menu__list
             +listItem('Мои работы', 'menu', 'works.html', '', secClass)

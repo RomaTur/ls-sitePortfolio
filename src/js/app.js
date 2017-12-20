@@ -6,15 +6,18 @@ import blogSideBar from './modules/blogSideBar'
 import svg4everybody from 'svg4everybody'
 import doFnElemVisible from './modules/doFnElemVisible'
 import blurForm from './modules/blurForm'
+import parallaxBg from './modules/parallaxMountains'
 
 let domready = function () {
     ///////
     console.log('entry start');
 
     svg4everybody();
+
+    parallaxBg();
     flipLoginForm('welcome__login-button', 'login__buttons-main', 'flip__container'); //flip container need to be a class
 
-    fullMenu('hamburger__list', 'menu-close__list', 'menu');
+    fullMenu('hamburger', 'menu');
 
     blurForm();
     

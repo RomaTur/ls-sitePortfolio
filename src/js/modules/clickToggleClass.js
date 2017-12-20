@@ -1,9 +1,8 @@
-module.exports = (elemClass, buttonClass, fn) => {
+module.exports = (elemClass, buttonClass) => {
     ////////////
     let elem = document.querySelector('.' + elemClass)
     let button = document.querySelector('.' + buttonClass)
     let containerToggle = () => {
-        fn()
         elem.classList.toggle(elemClass + '--active');
     };
     if (elem && button) {

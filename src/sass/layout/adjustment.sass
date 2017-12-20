@@ -31,53 +31,61 @@ button
 
 
 .hamburger
-    &__list
-        position: absolute
-        top: 18px
-        right: 18.4%
-        cursor: pointer
-        @include desktop
-            right: 30px
-        @include phone
-            right: 10px
-            top: 5px
-    &__item
-        width: 40px
-        height: 5px
-        background: $color-white
-        border-radius: 2px
-        margin: 10px 0
-        @include phone
-            height: 4px
-            width: 26px
-            margin: 5px 0 
-
-.menu-close
-    &__list
-        display: none
-        position: absolute
-        top: 45px
+    position: absolute
+    top: 40px
+    right: 18.4%
+    cursor: pointer
+    width: 40px
+    height: 40px
+    z-index: 120
+    @include desktop
         right: 30px
-        cursor: pointer
-        z-index: 120
-        width: 40px
-        height: 40px
-    &__item
+    @include phone
+        right: 0px
+        top: 5px
+    &__list
         position: relative
-        &:first-child
-            .menu-close__link
-                transform: rotate(-45deg)
-        &:last-child
-            .menu-close__link
-                transform: rotate(45deg)
-    &__link
+        width: 100%
+        height: 100%
+    &__line
         position: absolute
-        top: 0
-        left: 0
         width: 40px
         height: 5px
         background: $color-white
         border-radius: 2px
+        transition: 0.3s
+        @include phone
+            height: 3px
+            width: 26px
+        &--one
+            top: 0px
+            left: 0
+            @include phone
+                top: 5px
+        &--two
+            top: 15px
+            left: 0
+            @include phone
+                top: 15px
+        &--three
+            left: 0
+            top: 30px
+            @include phone
+                top: 25px
+    &--active
+        .hamburger__line
+            &--one
+                transform: rotate(45deg)
+                top: 15px
+                // left: 5px
+            &--two
+                opacity: 0
+                top: 15px
+                // left: 5px
+            &--three
+                transform: rotate(-45deg)
+                top: 15px
+                // left: 5px
 
 .menu
     position: fixed
