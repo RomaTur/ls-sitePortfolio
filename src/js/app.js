@@ -4,7 +4,6 @@ import flipLoginForm from './modules/flipLoginForm'
 import skillProgressInit from './modules/skillProgressInit'
 import blogSideBar from './modules/blogSideBar'
 import svg4everybody from 'svg4everybody'
-import doFnElemVisible from './modules/doFnElemVisible'
 import blurForm from './modules/blurForm'
 import parallaxBg from './modules/parallaxMountains'
 
@@ -22,12 +21,7 @@ let domready = function () {
     blurForm();
     
     mapInit('map');
-
-    let doSkillProgress = skillProgressInit('skill', 'skill__bar', 'data-pct'); //классы без .
-
-    if (doSkillProgress) {
-        doFnElemVisible('skills', doSkillProgress);
-    }
+    skillProgressInit('skill', 'skill__bar', 'data-pct'); //классы без .
 
     blogSideBar('article__list', 'article__list-circle');
 

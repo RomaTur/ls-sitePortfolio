@@ -18,18 +18,29 @@ mixin listItem(text, className, href, name, secClass)
         li(class= className+'__item')= text
 
 mixin headerSame()
-    .hamburger
-        ul.hamburger__list
-            li.hamburger__line.hamburger__line--one
-            li.hamburger__line.hamburger__line--two
-            li.hamburger__line.hamburger__line--three
-    
+    .parallax
+        .parallax__bg
+            img.parallax__bg-img.parallax__bg-img--sky(src="img/mountains/sky.png", alt="облако")
+            img.parallax__bg-img(src="img/mountains/mountain6.png", alt="облако")
+            img.parallax__bg-img(src="img/mountains/mountain5.png", alt="облако")
+            img.parallax__bg-img(src="img/mountains/cloud3.png", alt="облако")
+            img.parallax__bg-img(src="img/mountains/mountain4.png", alt="облако")
+            img.parallax__bg-img(src="img/mountains/mountain3.png", alt="облако")
+            img.parallax__bg-img(src="img/mountains/cloud2.png", alt="облако")
+            img.parallax__bg-img(src="img/mountains/mountain2.png", alt="облако")
+            img.parallax__bg-img(src="img/mountains/mountain1.png", alt="облако")
+            img.parallax__bg-img(src="img/mountains/cloud1.png", alt="облако")
     .menu
         ul.menu__list
             +listItem('Мои работы', 'menu', 'works.html', '', secClass)
             +listItem('Блог', 'menu', 'blog.html', '', secClass)
             +listItem('Обо мне', 'menu', 'about.html', '', secClass)
             +listItem('Авторизация', 'menu', 'index.html', '', secClass)
+    .hamburger
+        ul.hamburger__list
+            li.hamburger__line.hamburger__line--one
+            li.hamburger__line.hamburger__line--two
+            li.hamburger__line.hamburger__line--three
     ul.social
         +listItem('', 'social', 'https://vk.com/id_r0mashka','vk')
         +listItem('', 'social', 'https://github.com/RomaTur', 'github')

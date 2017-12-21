@@ -13,7 +13,6 @@ module.exports = () => {
         }
     }());
 
-
     let formContainer = document.querySelector('.form');
     let formBlur = document.querySelector('.form__blur');
     if(formContainer && formBlur){

@@ -72,6 +72,7 @@
   },
   "homepage": "https://github.com/RomaTur/ls-sitePortfolio#readme",
   "dependencies": {
+    "google-maps": "^3.2.1",
     "gulp": "github:gulpjs/gulp#4.0",
     "progress": "^2.0.0",
     "svg4everybody": "^2.1.9",

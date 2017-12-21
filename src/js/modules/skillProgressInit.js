@@ -1,4 +1,5 @@
 ////Анимация svg колец для элементов 'скилы'
+import doFnElemVisible from './doFnElemVisible'
 module.exports = (container, bar, attr) => {
     //////////////
     let skill = [...document.querySelectorAll('.' + container)]; //получение всех оберток где хранится data-pct
@@ -19,9 +20,7 @@ module.exports = (container, bar, attr) => {
         svgCircles.forEach(i => {
             i.style.strokeDashoffset = Math.PI * 180;
         })
-        return handleClick;
-    } else {
-        return false
+        doFnElemVisible('skills', handleClick);
     }
     ////////////////////
 };
