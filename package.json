@@ -74,7 +74,7 @@
   "dependencies": {
     "google-maps": "^3.2.1",
     "gulp": "github:gulpjs/gulp#4.0",
-    "progress": "^2.0.0",
+    "jump.js": "^1.0.2",
     "svg4everybody": "^2.1.9",
     "ymaps": "^0.1.1"
   }
