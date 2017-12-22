@@ -13,9 +13,10 @@
 .article
     &__list
         margin-right: 115px
-        width: 290px
+        width: 300px
         margin-top: 10px
         position: relative
+        transition: 0s
         @include desktop
             margin-right: 100px
         @include tablet
@@ -62,30 +63,38 @@
                 .article__list-circle
                     left: 265px !important
     &__item
-        color: $color-night
-        transition: 0.2s
+        transition: 0.3s
         margin-bottom: 8px
+        border-right: 3px solid transparent
         @include tablet
-            color: $color-white
+            padding-left: 0
             max-width: 95%
             width: 370px
             z-index: 1
+            border: none
         &--active
             border-right: 3px solid $color-aqua
-            color: $color-aqua
+            // padding-left: 0
             @include tablet
                 border: none
                 color: $color-white
             .article__link
+                padding-left: 0
                 font-weight: 600
+                color: $color-aqua
+                @include tablet
+                    color: $color-white
     &__link
         font-family: 'roboto', sans-serif
         font-size: rem(16px)
         font-weight: 300
-        transition: 0.2s
-        padding: 10px 19px
+        color: $color-night
+        // transition: 0.2s
+        padding: 10px 19px 10px 19px
         text-align: right
         line-height: 1.5
+        @include tablet
+            color: $color-white
 
 .articles
     // padding-top: 10px

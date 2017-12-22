@@ -2,6 +2,7 @@ import clickToggleClass from './clickToggleClass'
 import doFnElemVisible from './doFnElemVisible'
 import jump from 'jump.js'
 import moveSideBar from './moveSideBar'
+import activateSideBarLink from './activateSideBarLink'
 
 module.exports = (sideBarClass, buttonClass) => {
     ////////////
@@ -51,11 +52,10 @@ module.exports = (sideBarClass, buttonClass) => {
                 anchorNum = anchorNum.slice(1);
                 let targetArticle = document.querySelector('#article' + anchorNum);
                 if (targetArticle) {
-                    let offsetArticle
-                    if(document.body.clientWidth>=1025){
+                    let offsetArticle;
+                    if (document.body.clientWidth >= 1025) {
                         offsetArticle = -50;
-                    }
-                    else {
+                    } else {
                         offsetArticle = -20;
                     }
                     jump('#article' + anchorNum, {
@@ -65,14 +65,14 @@ module.exports = (sideBarClass, buttonClass) => {
                         easing: easeInOutQuad,
                         a11y: false
                     })
-
-                    sideBar.classList.remove(sideBarClass + '--active');
-
+                    sideBar.classList.remove(sideBarClass + '--active')
                 }
             }
         });
     };
 
+   
+            activateSideBarLink();
     
 
     if (sideBar && button) {
@@ -88,22 +88,26 @@ module.exports = (sideBarClass, buttonClass) => {
 
         clickToggleClass(sideBarClass, buttonClass);
         sideBarJumpFn();
+        
+        activateSideBarLink();
 
-        if(document.body.clientWidth<=1024)
+        if (document.body.clientWidth <= 1024)
             doFnElemVisible('articles', sideBarVisible)
         else
             moveSideBar(sideBar)
-        window.onresize = function(){
-            if(document.body.clientWidth<=1024){
-                button.style.left = -30+'px';
+        window.addEventListener('resize', () => {
+
+            activateSideBarLink();
+
+            if (document.body.clientWidth <= 1024) {
+                button.style.left = -30 + 'px';
                 sideBar.style.top = -5 + 'vh';
 
                 touchEvent()
-            }
-            else
-            moveSideBar(sideBar)
-    
-        }
+            } else
+                moveSideBar(sideBar)
+
+        });
 
 
         ////////////
