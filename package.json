@@ -57,9 +57,11 @@
     "plugins": []
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
     "build": "webpack -p",
-    "watch": "webpack-dev-server"
+    "watch": "webpack-dev-server",
+    "deploy": "gulp deploy"
+    
   },
   "repository": {
     "type": "git",

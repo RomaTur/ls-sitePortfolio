@@ -1,16 +1,16 @@
 import jump from 'jump.js'
 
-module.exports = (buttonClass, toClass) => {
+module.exports = (buttonClass, toClass, offsetVal) => {
     /////////////////
     let button = document.querySelector('.'+buttonClass);
-    
+    offsetVal = offsetVal || 0
     if(button){
         console.log('in smothScrollArrow')
 
         button.addEventListener('click', () => {
             jump('.'+toClass, {
                 duration: 1000,
-                offset: 0,
+                offset: offsetVal,
                 callback: undefined,
                 easing: easeInOutQuad,
                 a11y: false

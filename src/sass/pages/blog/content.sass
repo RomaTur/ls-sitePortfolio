@@ -15,6 +15,7 @@
         margin-right: 115px
         width: 290px
         margin-top: 10px
+        position: relative
         @include desktop
             margin-right: 100px
         @include tablet
@@ -55,11 +56,11 @@
             @include tablet
                 left: 0
                 .article__list-circle
-                    left: 425px
+                    left: 425px !important
             @include phone
                 left: 0
                 .article__list-circle
-                    left: 265px
+                    left: 265px !important
     &__item
         color: $color-night
         transition: 0.2s

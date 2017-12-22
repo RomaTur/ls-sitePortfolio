@@ -1,6 +1,7 @@
 import clickToggleClass from './clickToggleClass'
 import doFnElemVisible from './doFnElemVisible'
 import jump from 'jump.js'
+import moveSideBar from './moveSideBar'
 
 module.exports = (sideBarClass, buttonClass) => {
     ////////////
@@ -9,80 +10,104 @@ module.exports = (sideBarClass, buttonClass) => {
     let touchEvent = () => {
         var initialPoint;
         var finalPoint;
-        document.addEventListener('touchstart', function(event) {
-        // event.preventDefault();
-        event.stopPropagation();
-        initialPoint=event.changedTouches[0];
+        document.addEventListener('touchstart', function (event) {
+            // event.preventDefault();
+            event.stopPropagation();
+            initialPoint = event.changedTouches[0];
         }, false);
-        document.addEventListener('touchend', function(event) {
-        // event.preventDefault();
-        event.stopPropagation();
-        finalPoint=event.changedTouches[0];
-        var xAbs = Math.abs(initialPoint.pageX - finalPoint.pageX);
-        var yAbs = Math.abs(initialPoint.pageY - finalPoint.pageY);
-        if (xAbs > 20 || yAbs > 20) {
-        if (xAbs > yAbs) {
-        if (finalPoint.pageX < initialPoint.pageX){
-        /*СВАЙП ВЛЕВО*/
-            sideBar.classList.remove(sideBarClass+'--active')
-        }
-        else{
-        /*СВАЙП ВПРАВО*/
-            sideBar.classList.add(sideBarClass+'--active')
-        }
-        }
-        else {
-        if (finalPoint.pageY < initialPoint.pageY){
-        /*СВАЙП ВВЕРХ*/}
-        else{
-        /*СВАЙП ВНИЗ*/}
-        }
-        }
+        document.addEventListener('touchend', function (event) {
+            // event.preventDefault();
+            event.stopPropagation();
+            finalPoint = event.changedTouches[0];
+            var xAbs = Math.abs(initialPoint.pageX - finalPoint.pageX);
+            var yAbs = Math.abs(initialPoint.pageY - finalPoint.pageY);
+            if (xAbs > 20 || yAbs > 20) {
+                if (xAbs > yAbs) {
+                    if (finalPoint.pageX < initialPoint.pageX) {
+                        /*СВАЙП ВЛЕВО*/
+                        sideBar.classList.remove(sideBarClass + '--active')
+                    } else {
+                        /*СВАЙП ВПРАВО*/
+                        sideBar.classList.add(sideBarClass + '--active')
+                    }
+                } else {
+                    if (finalPoint.pageY < initialPoint.pageY) {
+                        /*СВАЙП ВВЕРХ*/
+                    } else {
+                        /*СВАЙП ВНИЗ*/
+                    }
+                }
+            }
         }, false);
     };
 
     let sideBarJumpFn = () => {
         console.log('in sideBarJumpFn')
         sideBar.addEventListener('click', (event) => {
-            
-            let anchorNum = event.target.getAttribute('href');
-            if(anchorNum){
+            let targetLink = event.target;
+            // targetLink.children('.articles__item').classList.add('articles__item--active')
+            let anchorNum = targetLink.getAttribute('href');
+            if (anchorNum) {
                 anchorNum = anchorNum.slice(1);
-                console.log(anchorNum)
-                let targetArticle = document.querySelector('#article'+anchorNum);
-                if(targetArticle){
-                jump('#article'+anchorNum, {
-                    duration: 1000,
-                    offset: 0,
-                    callback: undefined,
-                    easing: easeInOutQuad,
-                    a11y: false
-                  })
-                
-                  sideBar.classList.remove(sideBarClass+'--active');
-                
+                let targetArticle = document.querySelector('#article' + anchorNum);
+                if (targetArticle) {
+                    let offsetArticle
+                    if(document.body.clientWidth>=1025){
+                        offsetArticle = -50;
+                    }
+                    else {
+                        offsetArticle = -20;
+                    }
+                    jump('#article' + anchorNum, {
+                        duration: 1000,
+                        offset: offsetArticle,
+                        callback: undefined,
+                        easing: easeInOutQuad,
+                        a11y: false
+                    })
+
+                    sideBar.classList.remove(sideBarClass + '--active');
+
                 }
             }
         });
     };
 
-
+    
 
     if (sideBar && button) {
         ////////////
         console.log('in blogSideBar')
-        let startLeftPos = button.style.left;
+        let startLeftPos = window.getComputedStyle(button).left;
         button.style.left = -100 + 'px';
 
-        let sideBarVisible = function(){
+        let sideBarVisible = function () {
             button.style.left = startLeftPos;
             touchEvent();
         };
 
         clickToggleClass(sideBarClass, buttonClass);
-        doFnElemVisible('articles', sideBarVisible)
-        ////////////
         sideBarJumpFn();
+
+        if(document.body.clientWidth<=1024)
+            doFnElemVisible('articles', sideBarVisible)
+        else
+            moveSideBar(sideBar)
+        window.onresize = function(){
+            if(document.body.clientWidth<=1024){
+                button.style.left = -30+'px';
+                sideBar.style.top = -5 + 'vh';
+
+                touchEvent()
+            }
+            else
+            moveSideBar(sideBar)
+    
+        }
+
+
+        ////////////
+
     }
 
     const easeInOutQuad = (t, b, c, d) => {
@@ -90,6 +115,7 @@ module.exports = (sideBarClass, buttonClass) => {
         if (t < 1) return c / 2 * t * t + b
         t--
         return -c / 2 * (t * (t - 2) - 1) + b
-      }
+    }
     ////////////
+
 };

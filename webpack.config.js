@@ -25,8 +25,8 @@ let paths = {
 };
 
 module.exports = {
-    entry: ['babel-polyfill', paths.src.js + 'app.js'],
-    // entry: paths.src.js + 'app.js',
+    // entry: ['babel-polyfill', paths.src.js + 'app.js'],
+    entry: paths.src.js + 'app.js',
     // devtool: isDev ? 'inline-source-map' : 'hidden-source-map',
     devtool: isDev ? 'inline-source-map': '',
     output: {
