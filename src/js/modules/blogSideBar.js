@@ -71,9 +71,9 @@ module.exports = (sideBarClass, buttonClass) => {
         });
     };
 
-   
-            activateSideBarLink();
-    
+
+    activateSideBarLink();
+
 
     if (sideBar && button) {
         ////////////
@@ -88,7 +88,7 @@ module.exports = (sideBarClass, buttonClass) => {
 
         clickToggleClass(sideBarClass, buttonClass);
         sideBarJumpFn();
-        
+
         activateSideBarLink();
 
         if (document.body.clientWidth <= 1024)

@@ -1,7 +1,7 @@
 module.exports = (elemClass, fn, divider = 2, loop = false) => {
 
     ////////////
-    console.log(elemClass)
+    // console.log(elemClass)
     let elem = document.querySelector('.' + elemClass);
     if(!elem) elem = document.querySelector('#' + elemClass);
     let checkDistance = (scrollTop, elem) => {
@@ -21,7 +21,7 @@ module.exports = (elemClass, fn, divider = 2, loop = false) => {
         window.addEventListener('scroll', function(){
             let scrollTop = window.scrollY;
             if (checkDistance(scrollTop, elem).top <= 0 && !fnDone && checkDistance(scrollTop, elem).bottom <= 0) {
-                console.log('in doFnElemVisible');
+                // console.log('in doFnElemVisible');
                 fn();
                 (loop) ? fnDone = false : fnDone = true
             }

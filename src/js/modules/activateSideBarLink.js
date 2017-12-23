@@ -2,7 +2,7 @@
 import doFnElemVisible from './doFnElemVisible'
 module.exports = () => {
     ///////////
-    // console.log('in activateSideBarLink');
+    console.log('in activateSideBarLink');
     let sideBarItems = document.querySelectorAll('.article__item');
             let articles = document.querySelectorAll('.article');
             let sideBarLinks = [];
@@ -19,13 +19,13 @@ module.exports = () => {
             });
 
     for(let i = 0; i < sideBarLinks.length ; i++){
-        console.log('в цикле')
+        // console.log('в цикле')
         var fn = () => {
             for( let j = 0; j < sideBarLinks.length; j++){
             sideBarLinks[j].classList.remove('article__item--active')
             }
             sideBarLinks[i].classList.add('article__item--active')
-            console.log(i+1)
+            // console.log(i+1)
         }
         doFnElemVisible('article'+(i+1), fn, 3, true)
     }

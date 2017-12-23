@@ -6,6 +6,13 @@ block variables
 
 block content
     .wrapper
+        .parallax#parallax
+            .parallax__layer
+                    img(src=`img/mountains/layer10.png`).parallax__layer-img.parallax__layer-img--sky
+            - for (var i = 9; i > 0; i--)
+                .parallax__layer
+                    img(src=`img/mountains/layer${i}.png`).parallax__layer-img
+
         .welcome
             .flip__container
                 .welcome__intro 

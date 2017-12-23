@@ -7,13 +7,14 @@ import svg4everybody from 'svg4everybody'
 import blurForm from './modules/blurForm'
 import parallaxBg from './modules/parallaxMountains'
 import smoothScrollClick from './modules/smothScrollClick.js'
-let domready = function () {
+
+let domready = function () {//DOM дерево загрузилось
     ///////
     console.log('entry start');
 
-    svg4everybody();
+    svg4everybody();//запуск скрипта чтобы все внешние подключения svg были кроссбраузерными
 
-    parallaxBg();
+    parallaxBg();//запуск скрипта инициализации паралакса
     flipLoginForm('welcome__login-button', 'login__buttons-main', 'flip__container'); //flip container need to be a class
 
     smoothScrollClick('header__arrow-img', 'content');
