@@ -1,7 +1,15 @@
-module.exports = (elemClass, fn, divider = 2, loop = false) => {
-
+module.exports = (options) => {
+    options = {
+        elemClass: options.elemClass || 'undefined',
+        fn: options.fn || function() {},
+        divider: options.divider || 2,
+        loop: options.loop || false
+    }
     ////////////
-    // console.log(elemClass)
+    let elemClass = options.elemClass,
+        fn = options.fn,
+        divider = options.divider,
+        loop = options.loop;
     let elem = document.querySelector('.' + elemClass);
     if(!elem) elem = document.querySelector('#' + elemClass);
     let checkDistance = (scrollTop, elem) => {
@@ -17,7 +25,6 @@ module.exports = (elemClass, fn, divider = 2, loop = false) => {
     };
     let fnDone = false;
     if (elem) {
-        
         window.addEventListener('scroll', function(){
             let scrollTop = window.scrollY;
             if (checkDistance(scrollTop, elem).top <= 0 && !fnDone && checkDistance(scrollTop, elem).bottom <= 0) {

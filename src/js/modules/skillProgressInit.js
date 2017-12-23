@@ -20,7 +20,11 @@ module.exports = (container, bar, attr) => {
         svgCircles.forEach(i => {
             i.style.strokeDashoffset = Math.PI * 180;
         })
-        doFnElemVisible('skills', handleClick);
+        // doFnElemVisible('skills', handleClick);
+        doFnElemVisible({
+            elemClass: 'skills',
+            fn: handleClick
+        });
     }
     ////////////////////
 };

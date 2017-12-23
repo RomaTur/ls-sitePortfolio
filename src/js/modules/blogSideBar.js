@@ -72,12 +72,13 @@ module.exports = (sideBarClass, buttonClass) => {
     };
 
 
-    activateSideBarLink();
+    
 
 
     if (sideBar && button) {
         ////////////
         console.log('in blogSideBar')
+        activateSideBarLink();
         let startLeftPos = window.getComputedStyle(button).left;
         button.style.left = -100 + 'px';
 
@@ -92,7 +93,10 @@ module.exports = (sideBarClass, buttonClass) => {
         activateSideBarLink();
 
         if (document.body.clientWidth <= 1024)
-            doFnElemVisible('articles', sideBarVisible)
+            doFnElemVisible({
+                elemClass: 'articles',
+                fn: sideBarVisible
+            });
         else
             moveSideBar(sideBar)
         window.addEventListener('resize', () => {
