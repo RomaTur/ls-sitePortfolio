@@ -3,7 +3,7 @@
 
 const path              = require('path');
 const UglifyJSPlugin    = require('uglifyjs-webpack-plugin');
-const isDev             = true;
+const isDev             = false;
 
 let paths = {
     src:{

@@ -7,12 +7,16 @@ import svg4everybody from 'svg4everybody'
 import blurForm from './modules/blurForm'
 import parallaxBg from './modules/parallaxMountains'
 import smoothScrollClick from './modules/smothScrollClick.js'
+import animatePreloader from './modules/animatePreloader'
 
 let domready = function () {//DOM дерево загрузилось
     ///////
     console.log('entry start');
 
     svg4everybody();//запуск скрипта чтобы все внешние подключения svg были кроссбраузерными
+
+    animatePreloader();
+
 
     parallaxBg();//запуск скрипта инициализации паралакса
     

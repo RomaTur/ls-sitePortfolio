@@ -28,7 +28,7 @@ const sftp = require('gulp-sftp');
 const sftpConfig = require('./.sftpConfig.json');
 const webpackConfig = require('./webpack.config.js');
 
-var isDev = true;
+var isDev = false;
 
 const paths = {
     src: {
