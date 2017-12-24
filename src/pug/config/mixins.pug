@@ -20,10 +20,10 @@ mixin listItem(text, className, href, name, secClass)
 mixin headerSame()
     .parallax#parallax
         .parallax__layer
-                img(src=`img/mountains/layer10.png`).parallax__layer-img.parallax__layer-img--sky
+            img(src=`img/mountains/originalCompressed/layer10.png`).parallax__layer-img.parallax__layer-img--sky
         - for (var i = 9; i > 0; i--)
             .parallax__layer
-                img(src=`img/mountains/layer${i}.png`).parallax__layer-img
+                img(src=`img/mountains/originalCompressed/layer${i}.png`).parallax__layer-img
 
     .menu
         ul.menu__list

@@ -7,9 +7,13 @@ module.exports = (sideBarElem) => {
             window.addEventListener('scroll', function () {
                 let scrollTopDoc = window.scrollY + 100;
                 let moveSideBarVal = scrollTopDoc - sideBarOffset;
-                if (moveSideBarVal >= 0 && sideBarPos === 'relative') {
-                    sideBarElem.style.top = moveSideBarVal + 'px';
-                    
+
+                if (moveSideBarVal >= 0) {
+                    sideBarElem.style.position = 'fixed';
+                }
+                else{
+                    sideBarElem.style.position = 'static';
                 }
             });
+           
 };

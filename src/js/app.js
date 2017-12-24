@@ -15,6 +15,7 @@ let domready = function () {//DOM дерево загрузилось
     svg4everybody();//запуск скрипта чтобы все внешние подключения svg были кроссбраузерными
 
     parallaxBg();//запуск скрипта инициализации паралакса
+    
     flipLoginForm('welcome__login-button', 'login__buttons-main', 'flip__container'); //flip container need to be a class
 
     smoothScrollClick('header__arrow-img', 'content');

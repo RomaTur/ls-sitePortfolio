@@ -82,7 +82,7 @@ function imgBuild() {
     })); //перезагрузка браузера
 }
 else{
-    return gulp.src([paths.src.img + '**/*.{jpg,png,jpeg}'])
+    return gulp.src([paths.src.img + '**/*.{jpg,png,jpeg}', '!'+paths.src.img+'mountains/original/*.*'])
         .pipe(plumber())
         .pipe(imagemin({ // скудное сжатие
             progressive: true,
@@ -256,7 +256,7 @@ gulp.task('default', gulp.series(
 
 ////////загрузка на удаленный сервер///////
 gulp.task('deploy', () => {
-    return gulp.src(paths.build.self + '**/*.*')
+    return gulp.src([paths.build.self + '**/*.*', '!'+paths.build.img + 'mountains/original/*.*'])
         .pipe(plumber({
             errorHandler: onError
         }))

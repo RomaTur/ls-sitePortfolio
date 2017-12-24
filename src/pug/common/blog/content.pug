@@ -1,12 +1,12 @@
 .content
-    ul.article__list
-        li(class='article__item article__item--active')
-            a(class='article__link' href='#1') Самое важное в SASS
-        +listItem('Приемы в верстке, без которых не обходится ни один сайт', 'article', '#2')
-        +listItem('Какая-то текст-рыба', 'article', '#3')
-        +listItem('Как научиться мыслить образами, используя визуальные аналогии и многое другое', 'article', '#4')
-        
-        span.article__list-circle
+    .article__list-wrapper
+        ul.article__list
+            li(class='article__item article__item--active')
+                a(class='article__link' href='#1') Самое важное в SASS
+            +listItem('Приемы в верстке, без которых не обходится ни один сайт', 'article', '#2')
+            +listItem('Какая-то текст-рыба', 'article', '#3')
+            +listItem('Как научиться мыслить образами, используя визуальные аналогии и многое другое', 'article', '#4')
+            span.article__list-circle
 
     .articles
         article.article(id='article1')

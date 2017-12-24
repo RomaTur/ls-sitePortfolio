@@ -53,11 +53,7 @@ module.exports = (sideBarClass, buttonClass) => {
                 let targetArticle = document.querySelector('#article' + anchorNum);
                 if (targetArticle) {
                     let offsetArticle;
-                    if (document.body.clientWidth >= 1025) {
-                        offsetArticle = -50;
-                    } else {
-                        offsetArticle = -20;
-                    }
+                    (document.body.clientWidth >= 1025) ? offsetArticle = -50 : offsetArticle = -20
                     jump('#article' + anchorNum, {
                         duration: 1000,
                         offset: offsetArticle,
@@ -70,9 +66,6 @@ module.exports = (sideBarClass, buttonClass) => {
             }
         });
     };
-
-
-    
 
 
     if (sideBar && button) {

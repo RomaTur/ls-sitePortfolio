@@ -32,10 +32,16 @@ button
     width: 100vw
     height: 100vh
     position: relative
+    min-height: 500px
     @extend %bg-config
     @include tablet
-    background-image: url('../img/bg.jpg')
+        background-image: url('../img/mountains/bg.jpg')
 
+.welcome
+    min-height: 500px
+    @extend %bg-config
+    @include tablet
+        background-image: url('../img/mountains/bg.jpg')
 .hamburger
     position: absolute
     top: 40px
@@ -358,18 +364,37 @@ button
     // display: none
     @include tablet
         display: none
+    @include ie
+        // display: none
     &__layer
-        height: 100%;
-        width: 110%;
-        position: absolute;
-        top: 0;
-        left: -5%;
-        will-change: transform;
+        height: 110%
+        width: 110%
+        position: absolute
+        top: 0
+        left: -5%
+        will-change: transform
+        @include desktop
+            height: 100%
+        &:last-child
+            width: 80%
+            .parallax__layer-img
+                padding-bottom: 10%
+                padding-left: 50%
+        &:nth-child(4)
+            width: 60%
+            .parallax__layer-img
+                padding-bottom: 50%
+                padding-left: 20%
+        &:nth-child(7)
+            .parallax__layer-img
+                padding-bottom: 28%
+                padding-left: 0%
+
         &-img
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            position: absolute
+            bottom: 0
+            left: 50%
+            transform: translateX(-50%)
             &--sky
                 min-height: 100%
                 min-width: 100%

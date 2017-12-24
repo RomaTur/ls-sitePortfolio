@@ -11,11 +11,18 @@
         padding-top: 30px
 
 .article
-    &__list
-        margin-right: 115px
+    &__list-wrapper
         width: 300px
+        margin-right: 115px 
         margin-top: 10px
-        position: relative
+        @include tablet
+            margin-right: 0  
+            position: fixed
+            z-index: 120
+    &__list
+        width: 300px
+        position: static
+        top: 100px
         transition: 0s
         @include desktop
             margin-right: 100px
@@ -33,7 +40,7 @@
             z-index: 200
             padding: 0 10px
             transition: 0.4s
-            margin-right: 0
+            
             &-circle
                 content: ''
                 width: 45px
