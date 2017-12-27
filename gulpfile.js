@@ -28,7 +28,7 @@ const sftp = require('gulp-sftp');
 const sftpConfig = require('./.sftpConfig.json');
 const webpackConfig = require('./webpack.config.js');
 
-var isDev = false;
+var isDev = true;
 
 const paths = {
     src: {
@@ -104,7 +104,7 @@ function fontsBuild() {
 
 //Просто перетаскивание favicon
 function rootFilesBuild() {
-    return gulp.src([paths.src + 'favicon.ico', paths.src + '.htaccess'])
+    return gulp.src([paths.src.self + 'favicon.ico', paths.src.self + '.htaccess', paths.src.js + 'vue.min.js', paths.src.img + '**/*.gif'])
         .pipe(plumber())
         .pipe(gulp.dest(paths.build.self))
         .pipe(browserSync.reload({

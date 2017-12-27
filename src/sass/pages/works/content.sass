@@ -128,11 +128,33 @@
             height: 18px
             margin-right: 10px
 
+.fade-enter-active, .fade-leave-active 
+    transition: opacity 1s
+.fade-enter, .fade-leave-to
+    opacity: 0
+.fade-enter-to, .fade-leave
+    opacity: 1
+
+.slideUp-leave-active 
+    transition: 1s
+.slideUp-leave-to
+    transform: translateY(-150%)
+.slideUp-leave
+    transform: translateY(0)
+
+.slideDown-leave-active 
+    transition: 1s
+.slideDown-leave-to
+    transform: translateY(150%)
+.slideDown-leave
+    transform: translateY(0)
 
 .work
+    position: relative
     &__current
         width: 100%
         padding: 110px 20px
+        transition: 0.5s
         @include tablet
             padding: 60px 20px
             margin-bottom: 273px
@@ -140,14 +162,17 @@
             padding: 50px 10px
             margin-bottom: 210px
         &-img
+            opacity: 1
             height: 300px
             @include tablet
                 height: 400px
             @include phone
                 height: 160px
+
     &__another
         @extend %flex-center
         width: 100%
+        overflow: hidden
     &__current
         // height: 300px
         width: 100%
@@ -162,14 +187,23 @@
             padding: 20px 0
         @include phone
             padding: 5px 0
-        &-img
+        &-images
             height: 220px
+            position: relative
             @include desktop
                 height: 180px
             @include tablet
                 height: 170px
             @include phone
                 height: 77px
+        &-img
+            @extend %absolute-center
+            &--next
+                @extend .work__view-img
+                top: 200%
+            &--previous
+                @extend .work__view-img
+                top: -100%
         &-overlay
             position: absolute
             top: 0
@@ -187,10 +221,10 @@
         &-up
             width: 45px
             height: 45px
-            transform: rotate(180deg)
             fill: fade-out($color-white, 0.1)
         &-down
             width: 45px
             height: 45px
+            transform: rotate(180deg)
             fill: fade-out($color-white, 0.1)
     

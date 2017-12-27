@@ -8,6 +8,8 @@ import blurForm from './modules/blurForm'
 import parallaxBg from './modules/parallaxMountains'
 import smoothScrollClick from './modules/smothScrollClick.js'
 import animatePreloader from './modules/animatePreloader'
+import admin from './modules/admin'
+import slider from './modules/slider'
 
 let domready = function () {//DOM дерево загрузилось
     ///////
@@ -31,9 +33,10 @@ let domready = function () {//DOM дерево загрузилось
     
     mapInit('map');
     skillProgressInit('skill', 'skill__bar', 'data-pct'); //классы без .
-
+    slider()
     blogSideBar('article__list', 'article__list-circle');
 
+    admin()
     ///////
     console.log('entry done');
 

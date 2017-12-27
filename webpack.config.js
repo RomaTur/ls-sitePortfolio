@@ -3,7 +3,7 @@
 
 const path              = require('path');
 const UglifyJSPlugin    = require('uglifyjs-webpack-plugin');
-const isDev             = false;
+const isDev             = true;
 
 let paths = {
     src:{
@@ -25,7 +25,7 @@ let paths = {
 };
 
 module.exports = {
-    entry: isDev ? paths.src.js + 'app.js' : ['babel-polyfill', paths.src.js + 'app.js'],
+    entry: isDev ? [paths.src.js + 'app.js'] : ['babel-polyfill', paths.src.js + 'app.js'],
     // devtool: isDev ? 'inline-source-map' : 'hidden-source-map',
     devtool: isDev ? 'inline-source-map': '',
     output: {

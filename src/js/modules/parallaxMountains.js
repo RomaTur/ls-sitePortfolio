@@ -1,7 +1,10 @@
 module.exports = () => {
     //////////////////
-    const parallaxContainer = document.getElementById('parallax'),
-        layers = parallaxContainer.children;
+    const parallaxContainer = document.getElementById('parallax');
+    if(parallaxContainer){
+        let layers = parallaxContainer.children;
+    window.addEventListener('mousemove', moveLayers);
+    } 
     const moveLayers = event => {
         let initialX = (window.innerWidth / 2) - event.pageX;
         let initialY = (window.innerHeight / 2) - event.pageY;
@@ -19,6 +22,7 @@ module.exports = () => {
             i++;
         }  
     };
-    window.addEventListener('mousemove', moveLayers);
+    
     /////////////////
+
 };

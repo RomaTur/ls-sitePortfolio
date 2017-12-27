@@ -15,7 +15,11 @@ module.exports = () => {
 
     let delayOfCircleOne = 30
     let delayOfCircleTwo = 20
-    isScroll(false)
+    
+    let animateInterval;
+
+    
+
     let animatePreloader = () => {
         
         currentPercent += 5 // изменяется в зависимости от загрузки картинок
@@ -46,8 +50,10 @@ module.exports = () => {
         circleThree.style.strokeDashoffset = 260 - (260 / 100 * currentPercent)
         preloaderText.innerHTML = currentPercent
     }
-    let animateInterval = setInterval(animatePreloader, 100)
 
-
+    if(preloaderSvg){
+        isScroll(false)
+        animateInterval = setInterval(animatePreloader, 100)
+    }
 
 }
