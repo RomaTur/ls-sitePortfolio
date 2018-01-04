@@ -8,19 +8,20 @@ import blurForm from './modules/blurForm'
 import parallaxBg from './modules/parallaxMountains'
 import smoothScrollClick from './modules/smothScrollClick.js'
 import animatePreloader from './modules/animatePreloader'
-import admin from './modules/admin'
 import slider from './modules/slider'
+import Vue from 'vue'
+import test from './modules/test'
 
 let domready = function () {//DOM дерево загрузилось
     ///////
     console.log('entry start');
 
-    svg4everybody();//запуск скрипта чтобы все внешние подключения svg были кроссбраузерными
+    svg4everybody(); //запуск скрипта чтобы все внешние подключения svg были кроссбраузерными
 
     animatePreloader();
 
 
-    parallaxBg();//запуск скрипта инициализации паралакса
+    parallaxBg(); //запуск скрипта инициализации паралакса
     
     flipLoginForm('welcome__login-button', 'login__buttons-main', 'flip__container'); //flip container need to be a class
 
@@ -33,10 +34,11 @@ let domready = function () {//DOM дерево загрузилось
     
     mapInit('map');
     skillProgressInit('skill', 'skill__bar', 'data-pct'); //классы без .
-    slider()
+    slider();
     blogSideBar('article__list', 'article__list-circle');
-
-    admin()
+    if(document.querySelector('#test')){
+        test();
+    }
     ///////
     console.log('entry done');
 

@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "title": "Сайт-визитка",
+    "tech": "HTML, CSS, JAVASCRIPT",
+    "href": "#",
+    "img": "./src/assets/img/loremGif.gif"
+  }
+]

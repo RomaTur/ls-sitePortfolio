@@ -1,0 +1,107 @@
+.article
+  width: 400px
+  display: flex
+  flex-direction: column
+  margin: 5px
+  &__head
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 10px 30px
+    position: relative
+    background: $color-white
+    transition: 0.2s
+    cursor: pointer
+    border-radius: 5px
+    &:hover
+      background: lighten($color-aqua, 60%)
+  &__modal
+    &-wrapper
+      z-index: 11
+    &-overlay
+      @extend %absolute-center
+      position: fixed
+      width: 110vw
+      height: 110vh
+      background: fade-out($color-black, 0.1)
+      z-index: 11
+    &-container
+      width: 600px
+      height: 80vh
+      background: darken($color-white, 20%)
+      @extend %absolute-center
+      position: fixed
+      padding: 20px 20px
+      border-radius: 5px
+      border: 1px solid transparent
+      display: flex
+      flex-direction: column
+      z-index: 12
+      @include tablet
+        width: 430px
+        min-height: 500px
+        transform: translate(-50%, 0)
+        top: 10%
+      @include phone
+        width: 300px
+        padding: 10px 10px
+        top: 30px
+    &-head
+      display: flex
+      justify-content: center
+      margin-bottom: 10px
+      @include tablet
+        flex-direction: column
+        margin-bottom: 0
+    &-title,&-date,&-text
+      padding: 10px 15px
+      font-family: 'roboto', monospace
+      font-size: 16px
+      font-weight: 400
+      color: $color-night
+      border-radius: 5px
+      border: 1px solid transparent
+      transition: 0.3s
+      &:focus
+        border: 1px solid $color-aqua
+    &-title, &-date
+      flex: 1
+      margin-right: 10px
+      &:last-child
+        margin-right: 0
+      @include tablet
+        margin-right: 0
+        margin-bottom: 10px
+    &-text
+      width: 100%
+      flex: 1
+      resize: none
+      margin-bottom: 10px
+    &-remove
+      font-family: 'roboto', monospace
+      font-size: 13px
+      font-weight: 400
+      border-radius: 5px
+      border: 1px solid transparent
+      width: 70px
+      height: 30px
+      color: $color-white
+      background: $color-red
+      cursor: pointer
+      @extend %flex-center
+      transition: 0.3s
+      &:hover
+        background: darken($color-red, 10%)
+    
+.modal-enter
+  opacity: 0
+  // -webkit-transform: scale(1.1)
+  // transform: scale(1.1)
+
+.modal-leave-to
+  opacity: 0
+  // -webkit-transform: scale(1.1)
+  // transform: scale(1.1)
+
+.modal-leave-active, .modal-enter-active
+  transition: all .3s ease

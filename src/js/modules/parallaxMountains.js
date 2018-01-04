@@ -1,11 +1,8 @@
 module.exports = () => {
     //////////////////
-    const parallaxContainer = document.getElementById('parallax');
-    if(parallaxContainer){
-        let layers = parallaxContainer.children;
-    window.addEventListener('mousemove', moveLayers);
-    } 
-    const moveLayers = event => {
+    const parallaxContainer = document.querySelector('#parallax');
+    if(parallaxContainer) {var layers = parallaxContainer.children;}
+    let moveLayers = (event) => {
         let initialX = (window.innerWidth / 2) - event.pageX;
         let initialY = (window.innerHeight / 2) - event.pageY;
         let i = 0;
@@ -23,6 +20,10 @@ module.exports = () => {
         }  
     };
     
+    if(parallaxContainer){
+        console.log('in parallax')
+        window.addEventListener('mousemove', moveLayers);
+    } 
     /////////////////
 
 };

@@ -404,7 +404,7 @@ button
 
 
 .preloader
-    @extend %absolute-center
+    // @extend %absolute-center
     background: $color-aqua
     @include bg-img('../img/bg_preloader.jpg')
     background-position: center
@@ -416,6 +416,8 @@ button
     display: block
     opacity: 1
     position: fixed
+    top: 0
+    left: 0
     &__svg 
         @extend %absolute-center
         z-index: 1001

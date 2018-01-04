@@ -1,0 +1,32 @@
+.tabs
+    &__list
+        display: flex
+        background: $color-white2
+        @include phone
+            flex-direction: column
+    &__item
+        padding: 19px 70px
+        border-right: 2px solid $color-white
+        color: $color-grey
+        font-family: 'roboto'
+        font-size: 16px
+        font-weight: 400
+        text-transform: uppercase
+        text-align: center
+        &:hover
+            color: $color-aqua
+            background: $color-white
+        @include tablet
+            padding: 19px 43px
+        @include phone
+            font-size: 14px
+            padding: 14px 70px
+            border: none
+            border-top: 1px solid $color-white
+            &:first-child
+                border: none
+
+
+.active
+    color: $color-aqua
+    background: $color-white

@@ -1,0 +1,55 @@
+.skills
+    &__group
+        padding: 0 78px 30px 0
+    &__list
+        padding: 0 20px 20px
+        font-family: 'roboto', monospace
+        font-size: 14px
+        font-weight: 400
+        @include tablet
+            padding: 0 20px
+    &__title
+        font-weight: 500
+        font-size: 16px
+        color: $color-night
+        margin-bottom: 10px
+        @include phone
+            font-size: 14px
+    &__add
+        padding: 20px
+        display: flex
+        align-items: center
+        width: 200px
+        font-family: 'roboto', monospace
+        font-size: 16px
+        font-weight: 500
+        color: $color-night
+        @include tablet
+            padding: 10 20px
+
+.add
+    &__name
+        flex: 1
+        width: 110px
+        padding: 5px 10px
+        border-radius: 5px
+        border: 1px solid transparent
+        color: $color-night
+        font-family: 'roboto', monospace
+        font-weight: 500
+        transition: 0.3s
+        &:focus
+            border: 1px solid $color-aqua
+        
+    &__percents
+        width: 50px
+        padding: 5px 10px
+        border-radius: 5px
+        border: 1px solid transparent
+        margin: 0 10px
+        text-align: center
+        color: $color-night
+        font-family: 'roboto', monospace
+        font-weight: 500
+        &:focus
+            border: 1px solid $color-aqua

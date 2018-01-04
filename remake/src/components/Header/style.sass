@@ -1,0 +1,31 @@
+.header
+  padding: 25px 30px
+  display: flex
+  background: $color-aqua
+  justify-content: space-between
+  align-items: center
+  font-family: 'roboto', monospace
+  @include phone
+    flex-direction: column-reverse
+    padding: 13px 10px
+
+.title-text 
+  color: $color-white
+  font-size: 28px
+  font-weight: 400
+  @include tablet
+    font-size: 21px
+    line-height: 1.42
+
+.return-back
+  font-size: 16px
+  font-weight: 400
+  color: $color-white
+  text-decoration: underline
+  transition: 0.3s
+  &:hover 
+    text-decoration: none
+  @include phone
+    font-size: 14px
+    line-height: 1.8
+  

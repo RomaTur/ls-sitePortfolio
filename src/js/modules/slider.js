@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 module.exports = () => {
     let sliderBlock = document.querySelector('#slider')
     let currentSliderImg = document.querySelector('.work__current-img')
