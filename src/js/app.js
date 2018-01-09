@@ -11,6 +11,7 @@ import animatePreloader from './modules/animatePreloader'
 import slider from './modules/slider'
 import Vue from 'vue'
 import test from './modules/test'
+import form from './modules/form'
 
 let domready = function () {//DOM дерево загрузилось
     ///////
