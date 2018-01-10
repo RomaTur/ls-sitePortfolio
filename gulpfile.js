@@ -226,7 +226,8 @@ function watch() {
     gulp.watch(paths.src.js + paths.all, gulp.series(scriptsBuild));
     gulp.watch(paths.src.pug + paths.all, gulp.series(htmlBuild));
     gulp.watch(paths.src.js+'admin/**/*.*', gulp.series(scriptsBuild));
-    gulp.watch([paths.src.img + paths.all, paths.src.fonts + paths.all, paths.src + 'favicon.ico', paths.src.js + '**/*.json', paths.src.php + paths.all], gulp.series('preBuild'));
+    gulp.watch(paths.src.php + paths.all, gulp.series(phpBuild))
+    gulp.watch([paths.src.img + paths.all, paths.src.fonts + paths.all, paths.src + 'favicon.ico', paths.src.js + '**/*.json'], gulp.series('preBuild'));
 };
 
 // Запуск сервера

@@ -32,11 +32,12 @@ let domready = function () {//DOM дерево загрузилось
     fullMenu('hamburger', 'menu');
 
     blurForm();
-    
+    form();
     mapInit('map');
     skillProgressInit('skill', 'skill__bar', 'data-pct'); //классы без .
     slider();
     blogSideBar('article__list', 'article__list-circle');
+
     if(document.querySelector('#test')){
         test();
     }

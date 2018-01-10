@@ -30,7 +30,7 @@ module.exports = () => {
         window.addEventListener('mousemove', moveLayers);
         let windowCritVal = window.innerWidth / 1.3
         let offsetLeftOne = windowCritVal*0.5;
-        let offsetLeftTwo = windowCritVal*0.9;
+        let offsetLeftTwo = windowCritVal*1.3;
         let offsetLeftThree = windowCritVal*0.6;
         let cloudOneOffset,
             cloudTwoOffset,
@@ -55,7 +55,7 @@ module.exports = () => {
         }
         setInterval(moveCloudOne, 35);
         setInterval(moveCloudTwo, 65);
-        setInterval(moveCloudThree, 85);
+        setInterval(moveCloudThree, 80);
     } 
     /////////////////
 
