@@ -21,26 +21,28 @@ module.exports = {
             sass: [
               'vue-style-loader',
               'css-loader',
-              'svg-fill-loader/encodeSharp',
               'sass-loader',
               {
                 loader: 'sass-resources-loader',
                 options: {
                   resources: [
-                    './src/styles/config/variables.sass',
-                    './src/styles/config/extend.sass',
-                    './src/styles/config/mixins.sass'
+                    './src/components/sass/config/variables.sass',
+                    './src/components/sass/config/extend.sass',
+                    './src/components/sass/config/mixins.sass',
+                    './src/components/sass/layout/fonts.sass',
+                    './src/components/sass/layout/base.sass',
+                    './src/components/sass/layout/adjustment.sass'
                   ]
                 }
               }
             ]
           }
         }
-      }, 'eslint-loader']
+      }]
     },
     {
       test: /\.js$/,
-      use: ['babel-loader', 'eslint-loader'],
+      use: ['babel-loader'],
       exclude: /node_modules/
     },
     {
@@ -57,27 +59,18 @@ module.exports = {
       ]
     },
     {
-      test: /\.(png|jpeg|jpg|gif|woff|woff2|ico)$/,
+      test: /\.(png|jpeg|jpg|gif|woff|woff2|ico|svg)$/,
       loader: 'file-loader',
       options: {
         name: '[name].[ext]'
       }
-    },
-    {
-      test: /\.svg$/,
-      use: [
-        'url-loader',
-        {
-          loader: 'svg-fill-loader?fill=white'
-        }
-      ]
     }]
   },
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      'img': path.resolve(__dirname, 'src/assets/img'),
-      'fonts': path.resolve(__dirname, 'src/assets/fonts')
+      'img': path.resolve(__dirname, './src/assets/img'),
+      'fonts': path.resolve(__dirname, './src/assets/fonts')
     },
     extensions: ['.js', '.vue'],
     modules: [
