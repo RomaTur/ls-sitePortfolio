@@ -9,18 +9,33 @@
 
 ---
 
-*Инструкция по установке:*
+*Инструкция:*
 
+Скачайте репозиторий
 ```
 git clone https://github.com/RomaTur/ls-sitePortfolio.git
+```
+
+Перейдите в папку и скачайте зависимости
+```
 cd ls-sitePortfolio
 npm i
 ```
 
+Запустите dev server
+```
+npm run dev
+```
+
+Либо соберите проект
+```
+npm run build
+```
+
 ---
 
-> Проект выполнен с использованием инструментов разработки таких как **таск-менеджеры**, **препроцессоры**, **сборщик модулей**, **вируальный сервер** и др.
-> 
+> Проект выполнен с использованием инструментов разработки таких как **таск-менеджеры**, **препроцессоры**, **сборщик модулей**, **VDS сервер** и др.
+>
 > Соблюдается:
 >> использование **БЭМ** методологии
 >
@@ -30,7 +45,7 @@ npm i
 >
 >> поддержка **Internet Explorer**
 >
-> . 
+> .
 >
 
 ---
@@ -55,6 +70,7 @@ npm i
 <img src="http://www.pvsm.ru/wp-content/plugins/contextual-related-posts/timthumb/timthumb.php?src=http%3A%2F%2Fwww.pvsm.ru%2Fimages%2F2017%2F01%2F09%2FWebpack-v-Visual-Studio-dlya-bolshih-solyushenov.png&w=100&h=100&zc=1&q=75" alt="Webpack" width='75px' height='75px'>
 <img src="https://www.clearvision-cm.com/wp-content/themes/clearvision_v3/img/menu/git.png" alt="Git" width='75px' height='75px'>
 <img src="https://www.dsp.co.uk/wp-content/uploads/2016/07/MongoDB-Support-1-100x100.png" alt="Mongo.db" width='75px' height='75px'>
+<img src="http://www.phpkingdom.com/images/node.png" alt="NodeJS" width='75px' height='75px'>
 </p>
 
  ---
