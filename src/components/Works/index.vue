@@ -52,14 +52,6 @@ export default {
     smoothScrollClick('footer__arrow', 'wrapper', undefined, jump);
     fullMenu('hamburger', 'menu');
     
-    // doFnElemVisible({
-    //   elemClass: 'content',
-    //   fn: blurForm
-    // })
-    // doFnElemVisible({
-    //   elemClass: 'form',
-    //   fn: blurForm
-    // })
     blurForm()
     form();
   },

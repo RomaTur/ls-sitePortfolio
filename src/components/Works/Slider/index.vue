@@ -117,7 +117,6 @@ export default {
       (this.workNum < this.works.length - 1) ? this.nextProject = this.works[this.workNum + 1]: this.nextProject = this.works[0];
       (this.workNum > 0) ? this.previousProject = this.works[this.workNum - 1]: this.previousProject = this.works[this.works.length - 1];
       this.showCurrent = !this.showCurrent;
-      console.log('change current')
     },
     changeOthers: function () {
       (this.workNum < this.works.length - 1) ? this.nextProject2 = this.works[this.workNum + 1]: this.nextProject2 = this.works[0];

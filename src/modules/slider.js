@@ -8,7 +8,6 @@ module.exports = () => {
     let currentSliderImg = document.querySelector('.work__current-img')
 
     let sliderInit = () => {
-        console.log('hi')
         let workNum = 0;
         let slider = new Vue({
             el: '#slider',

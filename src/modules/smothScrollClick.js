@@ -7,7 +7,6 @@ module.exports = (buttonClass, toClass, offsetVal, jump) => {
     let button = document.querySelector('.'+buttonClass);
     offsetVal = offsetVal || 0
     if(button){
-        console.log('in smothScrollArrow')
 
         button.addEventListener('click', () => {
             jump('.'+toClass, {

@@ -12,14 +12,12 @@ module.exports = (container, bar, attr) => {
     let handleClick = () => {
         skill.forEach((item, i) => {
             percent[i] = parseInt(item.getAttribute(attr)); //получили значение процентов и перевели в number
-            console.log(percent[i])
             currentCircle = item.getElementsByClassName(bar); //выбрали кольцо из текущей обертки
             currentCircle[0].style.strokeDashoffset = ((100 - percent[i]) / 100) * Math.PI * 180; // присваивание текущему кольцу значения переведенному для спец свойства svg из процентов
         })
     }
     if (skill && svgCircles) {
         //обнуление значений во всех кольцах
-        console.log('in skillProggressInit')
         svgCircles.forEach(i => {
             i.style.strokeDashoffset = Math.PI * 180;
         })

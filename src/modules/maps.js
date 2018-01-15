@@ -5,7 +5,6 @@ module.exports = (mapSelector) => {
   //////////
   let el = document.querySelector('#' + mapSelector);
   if (el) {
-    console.log('in mapInit')
     var sarov = {
       lat: 54.931911,
       lng: 43.327683

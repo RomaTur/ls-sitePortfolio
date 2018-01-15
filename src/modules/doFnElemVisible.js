@@ -31,7 +31,6 @@ module.exports = (options) => {
         if (fnDone) {
             return 0
         }
-        console.log('in doFnElemVisible');
         if (checkDistance(scrollTop, elem).top <= 0 && checkDistance(scrollTop, elem).bottom <= 0) {
 
             fn();

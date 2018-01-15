@@ -1,7 +1,6 @@
 
 module.exports = (sideBarElem) => {
     ///////////////////
-    console.log('in moveSideBar')
             let sideBarOffset = sideBarElem.offsetTop;
             let sideBarPos = window.getComputedStyle(sideBarElem).position;
             window.addEventListener('scroll', function () {

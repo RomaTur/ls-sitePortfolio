@@ -52,7 +52,6 @@ module.exports = (sideBarClass, buttonClass, jump) => {
     };
 
     let sideBarJumpFn = () => {
-        console.log('in sideBarJumpFn')
         sideBar.addEventListener('click', (event) => {
             event.preventDefault()
             let targetLink = event.target;

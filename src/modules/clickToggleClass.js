@@ -10,7 +10,6 @@ module.exports = (elemClass, buttonClass, fnActive, fn) => {
         (elem.classList.contains(elemClass + '--active')) ? fnActive() : fn();
     };
     if (elem && button) {
-        console.log('in clickToggleClass');
         button.addEventListener('click', containerToggle);
     }
     ///////////////

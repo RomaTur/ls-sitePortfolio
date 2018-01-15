@@ -4,7 +4,6 @@ module.exports = (loginButton, mainButton, flipContainer) => {
     let login = document.querySelector('.' + loginButton);
     let main = document.querySelector('.' + mainButton);
     if (flip && login && main) {
-        console.log('in flipLoginForm');
         login.addEventListener('click', () => {
             flip.classList.add(flipContainer + '--active');
             login.style.opacity = '0';

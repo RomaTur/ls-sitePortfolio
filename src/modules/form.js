@@ -29,7 +29,6 @@ module.exports = () => {
   let formClean = document.querySelector('.form__clean')
     form.addEventListener('submit', event => {
       // event.preventDefault()
-      console.log('submit')
       ///////////////
     })
     formClean.addEventListener('click', event => {

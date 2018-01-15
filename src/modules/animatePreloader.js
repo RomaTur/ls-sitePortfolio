@@ -2,7 +2,6 @@
 // import isScroll from './isScroll.js'
 
 module.exports = () => {
-  console.log('in animatePreloader')   
   const isScroll = require('./isScroll.js')    
   const preloader = document.querySelector('.preloader')
   const preloaderSvg = document.querySelector('.preloader__svg')
@@ -32,7 +31,6 @@ module.exports = () => {
               setTimeout(()=>{
                     preloader.style.display = 'none'
                     isScroll(true)
-                    console.log('exit preloader')
                 },1500)
             },1000)
         }

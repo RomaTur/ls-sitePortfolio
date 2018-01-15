@@ -2,7 +2,6 @@
 module.exports = () => {
     ///////////
     let doFnElemVisible = require('./doFnElemVisible');
-    console.log('in activateSideBarLink');
     let sideBarItems = document.querySelectorAll('.article__item');
     let articles = document.querySelectorAll('.article');
     let sideBarLinks = [];
@@ -28,7 +27,6 @@ module.exports = () => {
             // console.log(i+1)
         }
         let elemId = articles[i].getAttribute('id')
-        console.log(elemId)
         doFnElemVisible({
             elemClass: elemId,
             fn: func,

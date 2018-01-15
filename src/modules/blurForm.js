@@ -16,7 +16,6 @@ module.exports = () => {
     let formContainer = document.querySelector('.form');
     let formBlur = document.querySelector('.form__blur');
     if(formContainer && formBlur){
-        console.log('in blurForm')
         fn.set()
         window.onresize = function(){
             fn.set()

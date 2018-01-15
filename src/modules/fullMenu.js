@@ -8,7 +8,6 @@ module.exports = (buttonClass, viewClass) => {
 
   const view = document.querySelector('.' + viewClass)
   if (view) {
-    console.log('in fullMenu');
     let scrollYes = () => {
       isScroll(true)
     }

@@ -26,7 +26,6 @@ module.exports = () => {
         var cloudThree = document.querySelector('#cloud__three');
     }
     if(parallaxContainer){
-        console.log('in parallax')
         window.addEventListener('mousemove', moveLayers);
         let windowCritVal = window.innerWidth / 1.3
         let offsetLeftOne = windowCritVal*0.5;
