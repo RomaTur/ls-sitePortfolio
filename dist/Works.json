@@ -1,0 +1,41 @@
+[{
+  "_id": "5a5a0746cc676e581d8dbe24",
+  "__v": 0,
+  "title": "LoftSchool",
+  "img": "dist/work-1.png",
+  "linkText": "1234",
+  "href": "loftschool.com",
+  "tech": "A lot of technologies"
+}, {
+  "_id": "5a5a0746cc676e581d8dbe25",
+  "__v": 0,
+  "title": "Магазин",
+  "img": "dist/Bc_Lhoi89Ws.jpg",
+  "linkText": "Посетить",
+  "href": "http://romatur.xyz",
+  "tech": "HTML, CSS, JAVASCRIPT"
+}, {
+  "_id": "5a5a0746cc676e581d8dbe26",
+  "__v": 0,
+  "title": "Радужный котик",
+  "img": "dist/loremGif.gif",
+  "linkText": "123",
+  "href": "5.23.55.29:3000/upload/work-1.png",
+  "tech": "Photoshop"
+}, {
+  "_id": "5a5a0746cc676e581d8dbe27",
+  "__v": 0,
+  "title": "Еще приложуха",
+  "img": "dist/1.jpg",
+  "linkText": "Посетить",
+  "href": "http://romatur.xyz",
+  "tech": "Three.js, WebGL"
+}, {
+  "_id": "5a5be581416df82f777a67ac",
+  "__v": 0,
+  "title": "LowPoly",
+  "img": "dist/work-2.png",
+  "linkText": "Снова эта ссылка",
+  "href": "http://5.23.55.29:3000",
+  "tech": "Photoshop"
+}]
