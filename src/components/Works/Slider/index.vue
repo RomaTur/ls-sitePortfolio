@@ -10,13 +10,17 @@
     .content__works#slider
             .content__works-left
                 .school__title
-                    .school__title-line
-                    h2.school__title-text {{ currentProject.title || 'Название' }}
-                    .school__title-line
-                h3.school__tech {{ currentProject.tech || 'Технологии' }}
-                a.school__link( target='_blank' :href='currentProject.href')
-                    +svg('school__link-ico', 'link')
-                    span.school__link-text {{ currentProject.linkText || 'Перейти' }}
+                    transition(name='current__title')
+                      .school__title-line(v-if='showCurrent')
+                    div.school__title-text {{ currentProject.title || 'Название' }}
+                    transition(name='current__title')
+                      .school__title-line(v-if='showCurrent')
+                transition(name='current__title')
+                  h3.school__tech(v-if='showCurrent') {{ currentProject.tech || 'Технологии' }}
+                transition(name='current__title')
+                  a.school__link(v-if='showCurrent' target='_blank' :href='currentProject.href')
+                      +svg('school__link-ico', 'link')
+                      span.school__link-text {{ currentProject.linkText || 'Перейти' }}
             .content__works-right
                 transition(name='fade' v-on:after-leave="afterLeaveCurrent")
                     .work__current(v-if='showCurrent')
@@ -42,13 +46,13 @@
 <script>
 
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-    
 export default {
   data: () => ({
     showCurrent: true,
     showNext: true,
     showPrevious: true,
     workNum: 0,
+    elem: '',
     currentProject: {
         title: '',
         tech: '',
@@ -94,6 +98,7 @@ export default {
         resolve();
       }).then(() => {
         this.changeOthers();
+        this.beforeLeaveCurrentTitle()
       }).then(() => {
         this.showCurrent = !this.showCurrent;
         this.showNext = !this.showNext;
@@ -106,6 +111,7 @@ export default {
         resolve();
       }).then(() => {
         this.changeOthers()
+        this.beforeLeaveCurrentTitle()
       }).then(() => {
         this.showCurrent = !this.showCurrent;
         this.showNext = !this.showNext;
@@ -117,10 +123,36 @@ export default {
       (this.workNum < this.works.length - 1) ? this.nextProject = this.works[this.workNum + 1]: this.nextProject = this.works[0];
       (this.workNum > 0) ? this.previousProject = this.works[this.workNum - 1]: this.previousProject = this.works[this.works.length - 1];
       this.showCurrent = !this.showCurrent;
+      this.beforeEnterCurrentTitle()
     },
     changeOthers: function () {
       (this.workNum < this.works.length - 1) ? this.nextProject2 = this.works[this.workNum + 1]: this.nextProject2 = this.works[0];
       (this.workNum > 0) ? this.previousProject2 = this.works[this.workNum - 1]: this.previousProject2 = this.works[this.works.length - 1];
+    },
+    beforeEnterCurrentTitle: function() {
+      this.elem = document.querySelector('.school__title-text')
+      let text = this.currentProject.title
+      this.elem.innerHTML = text.replace(/./g, '<span class="new">$&</span>')
+      const list = document.querySelectorAll('span.new')
+      list.forEach(function(item, index) {
+          item.style.opacity = '0'
+      })
+      list.forEach(function(item, index) {
+        setTimeout(function() {
+          item.classList.add('div_opacity')
+          item.style.opacity = '1'
+        }, 500 * index / list.length)
+      })
+
+    },
+    beforeLeaveCurrentTitle: function() {
+      const list = document.querySelectorAll('span.new')
+      list.forEach(function(item, index) {
+        setTimeout(function() {
+          item.classList.add('div_opacity')
+          item.style.opacity = '0'
+        },  500 * index / list.length)
+      })
     },
     afterLeaveCurrent: function () {
       this.changeCurrent();

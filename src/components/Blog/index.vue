@@ -21,7 +21,7 @@
               a.menu__link {{page.name}}
               .menu__line
     //- pre {{articles}}
-    include ../pug/common/blog/content
+    //- include ../pug/common/blog/content
     //- include ../pug/config/footer
     Footer
 </template>

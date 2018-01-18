@@ -20,10 +20,10 @@
               .menu__line
               a.menu__link {{page.name}}
               .menu__line
-    
+
     //- pre {{skills}}
 
-    include ../pug/common/about/content
+    //- include ../pug/common/about/content
     .footer
       include ../pug/common/about/footer
       Footer
